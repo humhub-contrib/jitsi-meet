@@ -19,7 +19,7 @@ class Events
 
         // Allow overwrite using translation
         $label =  Yii::t('JitsiMeetModule.base', $module->getSettingsForm()->menuTitle);
-        
+
         $topNav->addItem([
             'label' => $label,
             'url' => Url::to(['/jitsi-meet/room']),
@@ -29,5 +29,6 @@ class Events
         ]);
 
     }
+    
 
 }
