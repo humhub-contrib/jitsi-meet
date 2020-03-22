@@ -1,0 +1,17 @@
+{
+  "id": "jitsi-meet",
+  "name": "Jitsi Meet",
+  "description": "Adds free, secure, flexible, open-source video conferencing.",
+  "keywords": [
+    "video",
+    "conference",
+    "corona",
+    "jitsi"
+  ],
+  "version": "1.0.0",
+  "humhub": {
+    "minVersion": "1.4"
+  },
+  "homepage": "https://github.com/humhub-contrib/jtisi-meet",
+  "screenshots": []
+}
