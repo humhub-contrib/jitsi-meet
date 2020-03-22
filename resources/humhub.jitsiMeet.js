@@ -64,10 +64,15 @@ humhub.module('jitsiMeet', function (module, require, $) {
                 DISPLAY_WELCOME_PAGE_CONTENT: false,
 
                 //filmStripOnly: true,
+            },
+            userInfo: {
+                fullName: this.options.userdisplayname,
+                displayName: this.options.userdisplayname
             }
         };
 
         this.jitsiApi = new JitsiMeetExternalAPI(domain, options);
+        this.jitsiApi.executeCommand('displayName', this.options.userdisplayname);
         this.jitsiApi.addEventListeners({
             readyToClose: function() {
                 that.close();

@@ -45,10 +45,21 @@ class RoomWidget extends JsWidget
         /** @var Module $module */
         $module = Yii::$app->getModule('jitsi-meet');
 
+        $name = '';
+        $email = '';
+
+        if (!Yii::$app->user->isGuest) {
+            $user = Yii::$app->user->getIdentity();
+            $email = $user->email;
+            $name = $user->displayName;
+        }
+
         return [
             'roomName' => $this->roomName,
             'roomPrefix' => $module->getSettingsForm()->roomPrefix,
             'jitsiDomain' => $module->getSettingsForm()->jitsiDomain,
+            'usermail' => $email,
+            'userdisplayname' => $name
         ];
     }
 
