@@ -25,7 +25,7 @@ class RoomController extends Controller
     {
         $model = new JoinRoomForm();
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            return $this->redirect(['open', 'name' => $model->room]);
+            return $this->redirect(['open', 'name' => $this->fixRoomName($model->room)]);
         }
 
         return $this->render('index', [
