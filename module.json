@@ -5,7 +5,6 @@
   "keywords": [
     "video",
     "conference",
-    "corona",
     "jitsi"
   ],
   "version": "1.0.0",
@@ -13,5 +12,10 @@
     "minVersion": "1.4"
   },
   "homepage": "https://github.com/humhub-contrib/jtisi-meet",
-  "screenshots": []
+  "screenshots": [
+    "resources/screen1.PNG", 
+    "resources/screen2.PNG", 
+    "resources/screen3.PNG",
+    "resources/screen4.PNG"
+  ]
 }
