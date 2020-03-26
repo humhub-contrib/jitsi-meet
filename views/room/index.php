@@ -1,7 +1,6 @@
 <?php
 
 use humhub\libs\Html;
-use yii\helpers\Url;
 use humhub\widgets\Button;
 use yii\bootstrap\ActiveForm;
 
@@ -28,7 +27,7 @@ use yii\bootstrap\ActiveForm;
     </div>
 </div>
 
-<script>
+<script <?= Html::nonce() ?>>
     $('#jrform').on('beforeSubmit', function(e) {
         if ($('#joinroomform-newwindow'). prop("checked") == true) {
             $('#jrform').attr('target','_blank');

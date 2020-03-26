@@ -1,5 +1,6 @@
 <?php
 
+use humhub\libs\Html;
 use humhubContrib\modules\jitsiMeet\widgets\RoomWidget;
 
 /* @var $jitsiDomain string */
@@ -14,13 +15,13 @@ use humhubContrib\modules\jitsiMeet\widgets\RoomWidget;
     </div>
 </div>
 
-<script>
+<script <?= Html::nonce() ?>>
     window.onload = function (evt) {
         setSize();
-    }
+    };
     window.onresize = function (evt) {
         setSize();
-    }
+    };
     setSize();
 
     function setSize() {
