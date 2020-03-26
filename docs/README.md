@@ -10,3 +10,7 @@ Jitsi Meet is a fully encrypted, 100% open source video conferencing solution th
 - Use the official Jitsi server or use your own for additional privacy
 
 See (https://meet.jit.si/) for more details.
+
+### CSP
+
+Requires **https://meet.jit.si/external_api.js** in `script-src` js in your [csp config](https://docs.humhub.org/docs/admin/security#web-security-configuration).
