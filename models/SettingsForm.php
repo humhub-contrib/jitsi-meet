@@ -30,8 +30,8 @@ class SettingsForm extends Model
     {
         return [
             'jitsiDomain' => Yii::t('JitsiMeetModule.base', 'Default is meet.jit.si without "https://" prefix.'),
-            'jitsiAppID' => Yii::t('JitsiMeetModule.base', 'Application ID shared with the server used to generate JWT token for authentication. Leave empty to not generate JWT token.'),
-            'jitsiAppSecret' => Yii::t('JitsiMeetModule.base', 'Application secret shared with the server used to sign JWT token for authentication. Needed if JWT token should be generated.'),
+            'jitsiAppID' => Yii::t('JitsiMeetModule.base', 'Application ID shared with the server used to generate JWT token for authentication. Default: empty, no JWT token authentication will be used.'),
+            'jitsiAppSecret' => Yii::t('JitsiMeetModule.base', 'Application secret shared with the server used to sign JWT token for authentication. Default: empty, needed if JWT token should be generated.'),
             'menuTitle' => Yii::t('JitsiMeetModule.base', 'Default: Jitsi Meet'),
             'roomPrefix' => Yii::t('JitsiMeetModule.base', 'Default: empty, useful for public Jitsi server'),
         ];
