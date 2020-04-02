@@ -10,7 +10,7 @@ use humhubContrib\modules\jitsiMeet\widgets\RoomWidget;
 <div class="modal-dialog animated fadeIn" style="width:96%">
     <div class="modal-content jitsiModal" id="jitsiModal" style="background-color:transparent;">
         <?=
-        RoomWidget::widget(['roomName' => $name]);
+        RoomWidget::widget(['roomName' => $name, 'jwt' => $jwt]);
         ?>
     </div>
 </div>

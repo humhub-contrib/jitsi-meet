@@ -11,7 +11,8 @@ class SettingsForm extends Model
     public $jitsiDomain;
     public $menuTitle;
     public $roomPrefix;
-    public $jwtToken;
+    public $jitsiAppID;
+    public $jitsiAppSecret;
 
 
     /**
@@ -21,7 +22,7 @@ class SettingsForm extends Model
     {
         return [
             ['jitsiDomain', 'string'],
-            [['menuTitle', 'jwtToken', 'roomPrefix'], 'string'],
+            [['menuTitle', 'jitsiAppID', 'jitsiAppSecret', 'roomPrefix'], 'string'],
         ];
     }
 
@@ -29,8 +30,9 @@ class SettingsForm extends Model
     {
         return [
             'jitsiDomain' => Yii::t('JitsiMeetModule.base', 'Default is meet.jit.si without "https://" prefix.'),
+            'jitsiAppID' => Yii::t('JitsiMeetModule.base', 'Application ID shared with the server used to generate JWT token for authentication. Leave empty to not generate JWT token.'),
+            'jitsiAppSecret' => Yii::t('JitsiMeetModule.base', 'Application secret shared with the server used to sign JWT token for authentication. Needed if JWT token should be generated.'),
             'menuTitle' => Yii::t('JitsiMeetModule.base', 'Default: Jitsi Meet'),
-            'jwtToken' => Yii::t('JitsiMeetModule.base', 'Specify JWT token to enable authentication'),
             'roomPrefix' => Yii::t('JitsiMeetModule.base', 'Default: empty, useful for public Jitsi server'),
         ];
     }
@@ -51,6 +53,15 @@ class SettingsForm extends Model
             $this->jitsiDomain = 'meet.jit.si';
         }
 
+        $this->jitsiAppID = Yii::$app->getModule('jitsi-meet')->settings->get('jitsiAppID');
+        if (empty($this->jitsiAppID)) {
+            $this->jitsiAppID = '';
+        }
+        $this->jitsiAppSecret = Yii::$app->getModule('jitsi-meet')->settings->get('jitsiAppSecret');
+        if (empty($this->jitsiAppSecret)) {
+            $this->jitsiAppSecret = '';
+        }
+
         $this->roomPrefix = Yii::$app->getModule('jitsi-meet')->settings->get('roomPrefix');
         if (empty($this->roomPrefix)) {
             $this->roomPrefix = '';
@@ -64,6 +75,8 @@ class SettingsForm extends Model
     {
         Yii::$app->getModule('jitsi-meet')->settings->set('menuTitle', $this->menuTitle);
         Yii::$app->getModule('jitsi-meet')->settings->set('jitsiDomain', $this->jitsiDomain);
+        Yii::$app->getModule('jitsi-meet')->settings->set('jitsiAppID', $this->jitsiAppID);
+        Yii::$app->getModule('jitsi-meet')->settings->set('jitsiAppSecret', $this->jitsiAppSecret);
 
         $this->roomPrefix = ucwords(preg_replace("/[^A-Za-z0-9]/", '', $this->roomPrefix));
         Yii::$app->getModule('jitsi-meet')->settings->set('roomPrefix', $this->roomPrefix);

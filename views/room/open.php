@@ -16,7 +16,7 @@ use yii\helpers\Url;
     <script <?= Html::nonce() ?>>
         var modalM = humhub.require("ui.modal");
         var x = modalM.get("#jitsiMeet-modal");
-        x.load("<?= Url::to(['/jitsi-meet/room/modal', 'name' => $name]); ?>");
+        x.load("<?= Url::to(['/jitsi-meet/room/modal', 'name' => $name, 'jwt' => $jwt]); ?>");
         x.$.on('hidden.bs.modal', function (e) {
             window.location = "<?= Url::home() ?>";
         });

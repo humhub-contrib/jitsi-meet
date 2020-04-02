@@ -37,16 +37,53 @@ class RoomController extends Controller
     {
         $name = $this->fixRoomName(Yii::$app->request->get('name'));
 
+        $jwt = '';
+        if ($this->module->getSettingsForm()->jitsiAppID != '') {
+            $jwt = $this->createJWT($name);
+        }
         $this->layout = "@humhub/modules/user/views/layouts/main";
         return $this->render('open', [
             'jitsiDomain' => $this->module->getSettingsForm()->jitsiDomain,
+            'jwt' => $jwt,
             'name' => $name
         ]);
+    }
+
+    private function createJWT($roomName)
+    {
+        $appID = $this->module->getSettingsForm()->jitsiAppID;
+        $userName = '';
+        $userEmail = '';
+        if (!Yii::$app->user->isGuest) {
+            $user = Yii::$app->user->getIdentity();
+            $email = $user->email;
+            $userName = $user->displayName;
+        }
+        $issuedAt = time();
+        $notBefore = $issuedAt + 10; //Adding 10 seconds
+        $expire = $notBefore + 60; // Adding 60 seconds
+        $jitsi = $this->module->getSettingsForm()->jitsiDomain;
+        $token = array(
+            'iss' => $appID,
+            'aud' => $jitsi,
+            'sub' => $jitsi,
+            'exp' => $expire,
+            'room' => $roomName,
+            'context' => array(
+                'user' => array(
+                    'name' => $userName,
+                    'email' => $userEmail
+                )
+            )
+        );
+        $jwt = JWT::encode($token, $this->module->getSettingsForm()->jitsiAppSecret);
+        return $jwt;
     }
 
     public function actionModal()
     {
         $name = $this->fixRoomName(Yii::$app->request->get('name'));
+        $jwt = Yii::$app->request->get('jwt');
 
         if (!Yii::$app->request->isAjax) {
             return $this->redirect(['open', 'name' => $name]);
@@ -54,7 +91,7 @@ class RoomController extends Controller
 
         return $this->renderAjax('modal', [
             'jitsiDomain' => 'meet.jit.si',
-            'jwt' => '',
+            'jwt' => $jwt,
             'name' => $name
         ]);
 
@@ -72,5 +109,4 @@ class RoomController extends Controller
         return $name;
     }
     
-
 }

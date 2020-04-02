@@ -17,6 +17,7 @@ humhub.module('jitsiMeet', function (module, require, $) {
     Room.prototype.getDefaultOptions = function () {
         return {
             'roomName': 'unnamed',
+            'jwt': '',
         };
     };
 
@@ -52,17 +53,19 @@ humhub.module('jitsiMeet', function (module, require, $) {
             r = this.options.roomprefix + this.options.roomname;
         }
 
+        jwt = this.options.jwt;
+
         const options = {
             roomName: r,
             parentNode: document.querySelector('#jitsiMeetD'),
             //Todo: Fixme
             height: window.innerHeight - 160,
-            jwt: '',
+            jwt: jwt,
+            nossl: jwt == '',
             interfaceConfigOverwrite: {
                 RECENT_LIST_ENABLED: false,
                 GENERATE_ROOMNAMES_ON_WELCOME_PAGE: false,
                 DISPLAY_WELCOME_PAGE_CONTENT: false,
-
                 //filmStripOnly: true,
             },
             userInfo: {
