@@ -62,23 +62,10 @@ humhub.module('jitsiMeet', function (module, require, $) {
             height: window.innerHeight - 160,
             jwt: jwt,
             nossl: jwt == '',
-            configOverwrite: {
-                enableUserRolesBasedOnToken: true,
-            },
             interfaceConfigOverwrite: {
-                SHOW_JITSI_WATERMARK: false,
-                SHOW_WATERMARK_FOR_GUESTS: false,
                 RECENT_LIST_ENABLED: false,
                 GENERATE_ROOMNAMES_ON_WELCOME_PAGE: false,
                 DISPLAY_WELCOME_PAGE_CONTENT: false,
-                MOBILE_APP_PROMO: true,
-                TOOLBAR_BUTTONS: [ // info, invite
-                                'microphone', 'camera', 'closedcaptions', 'desktop', 'fullscreen',
-                                'fodeviceselection', 'hangup', 'profile', 'chat', 'recording',
-                                'livestreaming', 'etherpad', 'sharedvideo', 'settings', 'raisehand',
-                                'videoquality', 'filmstrip', 'feedback', 'stats', 'shortcuts',
-                                'tileview', 'videobackgroundblur', 'download', 'help', 'mute-everyone'
-                ],
                 //filmStripOnly: true,
             },
             userInfo: {
