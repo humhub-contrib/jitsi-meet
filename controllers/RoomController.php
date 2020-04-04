@@ -16,7 +16,7 @@ class RoomController extends Controller
     public function getAccessRules()
     {
         return [
-            ['login' => ['index']]
+            ['login']
         ];
     }
 
@@ -51,18 +51,20 @@ class RoomController extends Controller
 
     private function createJWT($roomName)
     {
-        $appID = $this->module->getSettingsForm()->jitsiAppID;
-        $userName = '';
-        $userEmail = '';
-        if (!Yii::$app->user->isGuest) {
-            $user = Yii::$app->user->getIdentity();
-            $email = $user->email;
-            $userName = $user->displayName;
+        if (Yii::$app->user->isGuest) {
+            return "";
         }
+        $user = Yii::$app->user->getIdentity();
+        if (is_null($user)) {
+            return "";
+        }
+        $userEmail = $user->email;
+        $userName = $user->displayName;
         $issuedAt = time();
         $notBefore = $issuedAt + 10; //Adding 10 seconds
         $expire = $notBefore + 60; // Adding 60 seconds
         $jitsi = $this->module->getSettingsForm()->jitsiDomain;
+        $appID = $this->module->getSettingsForm()->jitsiAppID;
         $token = array(
             'iss' => $appID,
             'aud' => $jitsi,
