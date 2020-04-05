@@ -16,7 +16,7 @@ class RoomController extends Controller
     public function getAccessRules()
     {
         return [
-            ['login' => ['index']]
+            ['login']
         ];
     }
 
@@ -37,16 +37,65 @@ class RoomController extends Controller
     {
         $name = $this->fixRoomName(Yii::$app->request->get('name'));
 
+        $jwt = '';
+        // generate JWT token if specified in configuration
+        if ($this->module->getSettingsForm()->jitsiAppID != '') {
+            // require the user to login if not authenticated
+            // JWT token generation is not allowed for guests
+            if (Yii::$app->user->isGuest) {
+                Yii::$app->user->loginRequired();
+            }
+            // create JWT for the given room name
+            $jwt = $this->createJWT($name);
+        }
+
         $this->layout = "@humhub/modules/user/views/layouts/main";
         return $this->render('open', [
             'jitsiDomain' => $this->module->getSettingsForm()->jitsiDomain,
+            'jwt' => $jwt,
             'name' => $name
         ]);
+    }
+
+    private function createJWT($roomName)
+    {
+        // security measure: if the current user is not authenticated, don‘t create a token
+        if (Yii::$app->user->isGuest) {
+            return "";
+        }
+        $user = Yii::$app->user->getIdentity();
+        // security measure: if we can‘t get the user‘s identity, don‘t create a token
+        if (is_null($user)) {
+            return "";
+        }
+        $userEmail = $user->email;
+        $userName = $user->displayName;
+        $issuedAt = time();
+        $notBefore = $issuedAt + 10; //Adding 10 seconds
+        $expire = $notBefore + 60; // Adding 60 seconds
+        $jitsi = $this->module->getSettingsForm()->jitsiDomain;
+        $appID = $this->module->getSettingsForm()->jitsiAppID;
+        $token = array(
+            'iss' => $appID,
+            'aud' => $jitsi,
+            'sub' => $jitsi,
+            'exp' => $expire,
+            'room' => $roomName,
+            'context' => array(
+                'user' => array(
+                    'name' => $userName,
+                    'email' => $userEmail
+                )
+            )
+        );
+        $jwt = JWT::encode($token, $this->module->getSettingsForm()->jitsiAppSecret);
+        return $jwt;
     }
 
     public function actionModal()
     {
         $name = $this->fixRoomName(Yii::$app->request->get('name'));
+        $jwt = Yii::$app->request->get('jwt');
 
         if (!Yii::$app->request->isAjax) {
             return $this->redirect(['open', 'name' => $name]);
@@ -54,7 +103,7 @@ class RoomController extends Controller
 
         return $this->renderAjax('modal', [
             'jitsiDomain' => 'meet.jit.si',
-            'jwt' => '',
+            'jwt' => $jwt,
             'name' => $name
         ]);
 
@@ -72,5 +121,4 @@ class RoomController extends Controller
         return $name;
     }
     
-
 }

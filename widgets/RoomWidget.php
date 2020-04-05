@@ -20,6 +20,8 @@ class RoomWidget extends JsWidget
 
     public $roomName = 'Unnamed';
 
+    public $jwt = '';
+
     /**
      * @inheritdoc
      */
@@ -33,7 +35,6 @@ class RoomWidget extends JsWidget
             'roomName' => $this->roomName,
             # Allow overwriting via translation config
             'moduleLabel' => Yii::t('JitsiMeetModule.base', $module->getSettingsForm()->menuTitle),
-            'jwt' => '',
         ]);
     }
 
@@ -55,6 +56,7 @@ class RoomWidget extends JsWidget
         }
 
         return [
+            'jwt' => $this->jwt,
             'roomName' => $this->roomName,
             'roomPrefix' => $module->getSettingsForm()->roomPrefix,
             'jitsiDomain' => $module->getSettingsForm()->jitsiDomain,

@@ -14,6 +14,8 @@ use yii\bootstrap\ActiveForm;
         <?php $form = ActiveForm::begin(['id' => 'configure-form']); ?>
 
         <?= $form->field($model, 'jitsiDomain'); ?>
+        <?= $form->field($model, 'jitsiAppID'); ?>
+        <?= $form->field($model, 'jitsiAppSecret'); ?>
         <?= $form->field($model, 'roomPrefix'); ?>
         <?= $form->field($model, 'menuTitle'); ?>
 
