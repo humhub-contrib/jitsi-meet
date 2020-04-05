@@ -1,8 +1,8 @@
 Changelog
 =========
-
-1.0.1 (Unreleased)
+1.1.0 (April 05, 2020)
 ----------------------
+- Enh #2: Add JWT authentication (thanks to @edmw)
 - Fix #4: Added nonce to inline scripts
 
 1.0.0 (March 22, 2020)

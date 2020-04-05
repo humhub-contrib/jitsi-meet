@@ -14,11 +14,13 @@ use yii\helpers\Url;
     <br>
     <br>
     <script <?= Html::nonce() ?>>
-        var modalM = humhub.require("ui.modal");
-        var x = modalM.get("#jitsiMeet-modal");
-        x.load("<?= Url::to(['/jitsi-meet/room/modal', 'name' => $name, 'jwt' => $jwt]); ?>");
-        x.$.on('hidden.bs.modal', function (e) {
-            window.location = "<?= Url::home() ?>";
+        $(function () {
+            var modalM = humhub.require("ui.modal");
+            var x = modalM.get("#jitsiMeet-modal");
+            x.load("<?= Url::to(['/jitsi-meet/room/modal', 'name' => $name, 'jwt' => $jwt]); ?>");
+            x.$.on('hidden.bs.modal', function (e) {
+                window.location = "<?= Url::home() ?>";
+            });
         });
     </script>
 </div>

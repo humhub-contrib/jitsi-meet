@@ -16,7 +16,7 @@ class RoomController extends Controller
     public function getAccessRules()
     {
         return [
-            ['login']
+            ['login' => ['index']]
         ];
     }
 
@@ -109,7 +109,8 @@ class RoomController extends Controller
 
     }
 
-    private function fixRoomName($name) {
+    private function fixRoomName($name)
+    {
 
         if (empty($name)) {
             $name = Yii::$app->user->getIdentity()->profile->firstname;
@@ -117,8 +118,8 @@ class RoomController extends Controller
         }
         $name = ucwords($name);
         $name = preg_replace("/[^A-Za-z0-9]/", '', $name);
-        
+
         return $name;
     }
-    
+
 }
