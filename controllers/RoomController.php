@@ -38,9 +38,17 @@ class RoomController extends Controller
         $name = $this->fixRoomName(Yii::$app->request->get('name'));
 
         $jwt = '';
+        // generate JWT token if specified in configuration
         if ($this->module->getSettingsForm()->jitsiAppID != '') {
+            // require the user to login if not authenticated
+            // JWT token generation is not allowed for guests
+            if (Yii::$app->user->isGuest) {
+                Yii::$app->user->loginRequired();
+            }
+            // create JWT for the given room name
             $jwt = $this->createJWT($name);
         }
+
         $this->layout = "@humhub/modules/user/views/layouts/main";
         return $this->render('open', [
             'jitsiDomain' => $this->module->getSettingsForm()->jitsiDomain,
@@ -51,10 +59,12 @@ class RoomController extends Controller
 
     private function createJWT($roomName)
     {
+        // security measure: if the current user is not authenticated, don‘t create a token
         if (Yii::$app->user->isGuest) {
             return "";
         }
         $user = Yii::$app->user->getIdentity();
+        // security measure: if we can‘t get the user‘s identity, don‘t create a token
         if (is_null($user)) {
             return "";
         }
