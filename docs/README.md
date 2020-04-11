@@ -31,6 +31,7 @@ Example  common.php snippet:
 ],
 "script-src" => [
   "self" => true,
+  "unsafe-inline" => true,
   "allow" => [
     'https://meet.jit.si/external_api.js'
   ],
