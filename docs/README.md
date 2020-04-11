@@ -13,4 +13,28 @@ See (https://meet.jit.si/) for more details.
 
 ### CSP
 
-Requires **https://meet.jit.si/external_api.js** in `script-src` js in your [csp config](https://docs.humhub.org/docs/admin/security#web-security-configuration).
+In case you've overwritten the default [content security settings](https://docs.humhub.org/docs/admin/security#web-security-configuration). You should make sure following resources are allowed:
+
+- Requires **https://meet.jit.si/external_api.js** in `script-src`
+- Requires **https://meet.jit.si/external_api.js** in `frame-src`
+
+Example  common.php snippet:
+
+```php
+//...
+"frame-src" => [
+  "self" => true,
+  "allow" => [  
+    "https://www.youtube.com",
+    "https://meet.jit.si",
+  ]                        
+],
+"script-src" => [
+  "self" => true,
+  "allow" => [
+    'https://meet.jit.si/external_api.js'
+  ],
+//...
+```
+
+> Note: The default csp should not block any of this.
