@@ -13,10 +13,10 @@ See (https://meet.jit.si/) for more details.
 
 ### CSP
 
-In case you've overwritten the default [content security settings](https://docs.humhub.org/docs/admin/security#web-security-configuration). You should make sure following resources are allowed:
+In case you've overwritten the default [content security settings](https://docs.humhub.org/docs/admin/security#web-security-configuration), you should make sure following resources are allowed:
 
 - Requires **https://meet.jit.si/external_api.js** in `script-src`
-- Requires **https://meet.jit.si/external_api.js** in `frame-src`
+- Requires **https://meet.jit.si** in `frame-src`
 
 Example  common.php snippet:
 
