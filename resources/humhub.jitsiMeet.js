@@ -27,7 +27,7 @@ humhub.module('jitsiMeet', function (module, require, $) {
         this.initJitsi();
 
         this.modal = modal.get('#jitsiMeet-modal');
-        this.modal.$.on('hidden.bs.modal', function(evt) {
+        this.modal.$.on('hidden.bs.modal', function (evt) {
             that.modal.clear();
         });
 
@@ -41,7 +41,7 @@ humhub.module('jitsiMeet', function (module, require, $) {
         evt.finish();
 
         this.jitsiApi.executeCommand('hangup');
-        
+
     }
 
     Room.prototype.initJitsi = function () {
@@ -70,23 +70,22 @@ humhub.module('jitsiMeet', function (module, require, $) {
             },
             userInfo: {
                 fullName: this.options.userdisplayname,
-                displayName: this.options.userdisplayname
+                displayName: this.options.userdisplayname,
+            },
+            configOverwrite: {
+                // Workaround for broken "open in app" link on Android
+                disableDeepLinking: true,
             }
         };
 
         this.jitsiApi = new JitsiMeetExternalAPI(domain, options);
         this.jitsiApi.executeCommand('displayName', this.options.userdisplayname);
         this.jitsiApi.addEventListeners({
-            readyToClose: function() {
+            readyToClose: function () {
                 that.close();
             },
         });
-
-       
     }
-
-
-
 
 
     module.export({
