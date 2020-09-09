@@ -17,6 +17,7 @@ use yii\bootstrap\ActiveForm;
                 <?php $form = ActiveForm::begin(['layout' => 'horizontal', 'id' => 'jrform']); ?>
 
                 <?= $form->field($model, 'room'); ?>
+                <?= $form->field($model, 'enableJwt')->checkbox(); ?>
                 <?= $form->field($model, 'newWindow')->checkbox(); ?>
                 
                 <?= Button::save(Yii::t('JitsiMeetModule.base', 'Join'))->loader(false)->submit() ?>

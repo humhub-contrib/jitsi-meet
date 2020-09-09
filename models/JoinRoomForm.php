@@ -10,12 +10,13 @@ class JoinRoomForm extends \yii\base\Model
 
     public $room;
     public $newWindow;
+    public $enableJwt;
 
     public function rules()
     {
         return [
             [['room'], 'string'],
-            [['newWindow'], 'boolean'],
+            [['newWindow', 'enableJwt'], 'boolean'],
         ];
     }
 
@@ -24,6 +25,7 @@ class JoinRoomForm extends \yii\base\Model
         return [
             'room' => Yii::t('JitsiMeetModule.base', 'Name'),
             'newWindow' => Yii::t('JitsiMeetModule.base', 'Open in new window?'),
+            'enableJwt' => Yii::t('JitsiMeetModule.base', 'Enable JWT Authentication'),
         ];
     }
 

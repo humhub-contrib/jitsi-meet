@@ -24,7 +24,7 @@ class RoomController extends Controller
     {
         $model = new JoinRoomForm();
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            return $this->redirect(['open', 'name' => $this->fixRoomName($model->room)]);
+            return $this->redirect(['open', 'name' => $this->fixRoomName($model->room), 'enableJwt' => $model->enableJwt]);
         }
 
         return $this->render('index', [
@@ -36,10 +36,10 @@ class RoomController extends Controller
     public function actionOpen()
     {
         $name = $this->fixRoomName(Yii::$app->request->get('name'));
-
+        $enableJwt = Yii::$app->request->get('enableJwt');
         $jwt = '';
         // generate JWT token if specified in configuration
-        if ($this->module->getSettingsForm()->jitsiAppID != '') {
+        if ($enableJwt && $this->module->getSettingsForm()->jitsiAppID != '') {
             // require the user to login if not authenticated
             // JWT token generation is not allowed for guests
             if (Yii::$app->user->isGuest) {

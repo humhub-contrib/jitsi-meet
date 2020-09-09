@@ -13,4 +13,5 @@ return [
     'Open in new window?' => 'Openen in een nieuw venster?',
     'Application ID shared with a private Jitsi server used to generate JWT token for authentication. Default: empty, no JWT token authentication will be used.' => '',
     'Application secret shared with a private Jitsi server used to sign JWT token for authentication. Default: empty, needed if JWT token should be generated.' => '',
+    'Enable JWT Authentication' => '',
 ];

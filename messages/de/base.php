@@ -13,4 +13,5 @@ return [
     'Name' => 'Name',
     'Open conference room' => 'Konferenzraum öffnen',
     'Open in new window?' => 'In neuem Fenster öffnen?',
+    'Enable JWT Authentication' => '',
 ];
