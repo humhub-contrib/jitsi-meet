@@ -6,6 +6,12 @@ use yii\helpers\Url;
 
 /* @var $jitsiDomain string */
 /* @var $jwt string */
+
+$jitsiRoomUrl = ['/jitsi-meet/room/modal', 'name' => $name];
+if (!empty($jwt)) {
+    $jitsiRoomUrl['jwt'] = $jwt;   
+}
+
 ?>
 <script <?= Html::nonce() ?> src='https://<?= $jitsiDomain ?>/external_api.js'></script>
 <div class="container" style="text-align: center;">
@@ -17,7 +23,7 @@ use yii\helpers\Url;
         $(function () {
             var modalM = humhub.require("ui.modal");
             var x = modalM.get("#jitsiMeet-modal");
-            x.load("<?= Url::to(['/jitsi-meet/room/modal', 'name' => $name, 'jwt' => $jwt]); ?>");
+            x.load("<?= Url::to($jitsiRoomUrl); ?>");
             x.$.on('hidden.bs.modal', function (e) {
                 window.location = "<?= Url::home() ?>";
             });
