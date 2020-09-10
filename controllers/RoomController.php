@@ -24,7 +24,7 @@ class RoomController extends Controller
     {
         $model = new JoinRoomForm();
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            return $this->redirect(['open', 'name' => $this->fixRoomName($model->room), 'enableJwt' => $model->enableJwt]);
+            return $this->redirect(['open', 'name' => $this->fixRoomName($model->room)]);
         }
 
         return $this->render('index', [
@@ -36,23 +36,23 @@ class RoomController extends Controller
     public function actionOpen()
     {
         $name = $this->fixRoomName(Yii::$app->request->get('name'));
-        $enableJwt = Yii::$app->request->get('enableJwt');
-        $jwt = '';
+        $jitsiRoomUrl = ['/jitsi-meet/room/modal', 'name' => $name];
+
         // generate JWT token if specified in configuration
-        if ($enableJwt && $this->module->getSettingsForm()->jitsiAppID != '') {
+        if ($this->module->getSettingsForm()->enableJwt) {
             // require the user to login if not authenticated
             // JWT token generation is not allowed for guests
             if (Yii::$app->user->isGuest) {
                 Yii::$app->user->loginRequired();
             }
             // create JWT for the given room name
-            $jwt = $this->createJWT($name);
+            $jitsiRoomUrl['jwt'] = $this->createJWT($name);
         }
 
         $this->layout = "@humhub/modules/user/views/layouts/main";
         return $this->render('open', [
             'jitsiDomain' => $this->module->getSettingsForm()->jitsiDomain,
-            'jwt' => $jwt,
+            'jitsiRoomUrl' => $jitsiRoomUrl,
             'name' => $name
         ]);
     }

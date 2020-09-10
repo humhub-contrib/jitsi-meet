@@ -5,13 +5,7 @@ use humhub\widgets\SiteLogo;
 use yii\helpers\Url;
 
 /* @var $jitsiDomain string */
-/* @var $jwt string */
-
-$jitsiRoomUrl = ['/jitsi-meet/room/modal', 'name' => $name];
-if (!empty($jwt)) {
-    $jitsiRoomUrl['jwt'] = $jwt;   
-}
-
+/* @var $jitsiRoomUrl array */
 ?>
 <script <?= Html::nonce() ?> src='https://<?= $jitsiDomain ?>/external_api.js'></script>
 <div class="container" style="text-align: center;">
