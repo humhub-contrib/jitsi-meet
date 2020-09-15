@@ -1,9 +1,10 @@
 Changelog
 =========
 
-1.1.1 (Unreleased)
-------------------
+1.1.2 (September 12, 2020)
+--------------------------
 - Fix #10: Workaround for broken "open in app" link on Android devices
+- Fix #11: Authentication failed with Jitsi Password
 
 
 1.1.0 (April 05, 2020)

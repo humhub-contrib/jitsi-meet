@@ -13,6 +13,7 @@ class SettingsForm extends Model
     public $roomPrefix;
     public $jitsiAppID;
     public $jitsiAppSecret;
+    public $enableJwt;
 
 
     /**
@@ -23,6 +24,12 @@ class SettingsForm extends Model
         return [
             ['jitsiDomain', 'string'],
             [['menuTitle', 'jitsiAppID', 'jitsiAppSecret', 'roomPrefix'], 'string'],
+            ['enableJwt', 'boolean'],
+            [['jitsiAppID', 'jitsiAppSecret'], 'required', 'when' => function($model) {
+                return $model->enableJwt;
+            }, 'whenClient' => "function (attribute, value) {
+                return $('#settingsform-enablejwt').is(':checked');
+            }"]
         ];
     }
 
@@ -34,6 +41,7 @@ class SettingsForm extends Model
             'jitsiAppSecret' => Yii::t('JitsiMeetModule.base', 'Application secret shared with a private Jitsi server used to sign JWT token for authentication. Default: empty, needed if JWT token should be generated.'),
             'menuTitle' => Yii::t('JitsiMeetModule.base', 'Default: Jitsi Meet'),
             'roomPrefix' => Yii::t('JitsiMeetModule.base', 'Default: empty, useful for public Jitsi server'),
+            'enableJwt' => Yii::t('JitsiMeetModule.base', 'Enable JWT Authentication'),
         ];
     }
 
@@ -66,6 +74,11 @@ class SettingsForm extends Model
         if (empty($this->roomPrefix)) {
             $this->roomPrefix = '';
         }
+
+        $this->enableJwt = Yii::$app->getModule('jitsi-meet')->settings->get('enableJwt');
+        if (empty($this->enableJwt)) {
+            $this->enableJwt = 0;
+        }
     }
 
     /**
@@ -77,6 +90,7 @@ class SettingsForm extends Model
         Yii::$app->getModule('jitsi-meet')->settings->set('jitsiDomain', $this->jitsiDomain);
         Yii::$app->getModule('jitsi-meet')->settings->set('jitsiAppID', $this->jitsiAppID);
         Yii::$app->getModule('jitsi-meet')->settings->set('jitsiAppSecret', $this->jitsiAppSecret);
+        Yii::$app->getModule('jitsi-meet')->settings->set('enableJwt', $this->enableJwt);
 
         $this->roomPrefix = ucwords(preg_replace("/[^A-Za-z0-9]/", '', $this->roomPrefix));
         Yii::$app->getModule('jitsi-meet')->settings->set('roomPrefix', $this->roomPrefix);

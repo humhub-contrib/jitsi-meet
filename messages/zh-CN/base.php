@@ -13,4 +13,5 @@ return [
     'Join' => '',
     'Open conference room' => '',
     'Open in new window?' => '',
+    'Enable JWT Authentication' => '',
 ];
