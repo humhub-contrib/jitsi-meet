@@ -11,6 +11,10 @@ class Events
 
     public static function onTopMenuInit($event)
     {
+        if (Yii::$app->user->isGuest) {
+            return;
+        }
+
         /** @var TopMenu $topNav */
         $topNav = $event->sender;
 
