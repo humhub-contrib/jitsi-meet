@@ -1,6 +1,10 @@
 Changelog
 =========
 
+1.1.3 (Unreleased)
+--------------------------
+- Enh: Disable Guest Access
+
 1.1.2 (September 12, 2020)
 --------------------------
 - Fix #10: Workaround for broken "open in app" link on Android devices
