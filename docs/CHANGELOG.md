@@ -1,8 +1,8 @@
 Changelog
 =========
 
-1.1.3 (Unreleased)
---------------------------
+1.1.3 (April 14, 2022)
+----------------------
 - Enh: Disable Guest Access - Do not show menu item to users which are not logged in.
 
 
