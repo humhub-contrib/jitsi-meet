@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.1.4 (Unreleased)
+1.1.4 (April 18, 2022)
 ----------------------
 - Fix #27: Fix assets on updating of disabled module
 
