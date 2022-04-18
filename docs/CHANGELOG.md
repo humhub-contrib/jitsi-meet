@@ -1,6 +1,11 @@
 Changelog
 =========
 
+1.1.4 (Unreleased)
+----------------------
+- Fix #27: Fix assets on updating of disabled module
+
+
 1.1.3 (April 14, 2022)
 ----------------------
 - Enh: Disable Guest Access - Do not show menu item to users which are not logged in.
