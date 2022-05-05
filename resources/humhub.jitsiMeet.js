@@ -1,12 +1,7 @@
 humhub.module('jitsiMeet', function (module, require, $) {
-
-    var client = require('client');
     var modal = require('ui.modal');
     var object = require('util').object;
     var Widget = require('ui.widget').Widget;
-    var event = require('event');
-    var loader = require('ui.loader');
-    var ooJSLoadRetries = 0;
 
     var Room = function (node, options) {
         Widget.call(this, node, options);
@@ -26,16 +21,13 @@ humhub.module('jitsiMeet', function (module, require, $) {
 
         this.initJitsi();
 
-        this.modal = modal.get('#jitsiMeet-modal');
+        this.modal = modal.get('jitsiMeet-modal');
         this.modal.$.on('hidden.bs.modal', function (evt) {
             that.modal.clear();
         });
-
     };
 
     Room.prototype.close = function (evt) {
-        var that = this;
-
         this.modal.clear();
         this.modal.close();
         evt.finish();
@@ -48,15 +40,15 @@ humhub.module('jitsiMeet', function (module, require, $) {
         var that = this;
         const domain = this.options.jitsidomain;
 
-        r = this.options.roomname;
-        if (typeof this.options.roomprefix === 'string' && this.options.roomprefix != '') {
-            r = this.options.roomprefix + this.options.roomname;
+        var roomName = this.options.roomname;
+        if (typeof this.options.roomprefix === 'string' && this.options.roomprefix !== '') {
+            roomName = this.options.roomprefix + this.options.roomname;
         }
 
         jwt = this.options.jwt;
 
         const options = {
-            roomName: r,
+            roomName: roomName,
             parentNode: document.querySelector('#jitsiMeetD'),
             //Todo: Fixme
             height: window.innerHeight - 160,
@@ -79,7 +71,6 @@ humhub.module('jitsiMeet', function (module, require, $) {
         };
 
         this.jitsiApi = new JitsiMeetExternalAPI(domain, options);
-        this.jitsiApi.executeCommand('displayName', this.options.userdisplayname);
         this.jitsiApi.addEventListeners({
             readyToClose: function () {
                 that.close();
@@ -87,9 +78,7 @@ humhub.module('jitsiMeet', function (module, require, $) {
         });
     }
 
-
     module.export({
-        //init: init,
         Room: Room,
     });
 

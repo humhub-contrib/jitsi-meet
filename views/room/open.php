@@ -15,10 +15,10 @@ use yii\helpers\Url;
     <br>
     <script <?= Html::nonce() ?>>
         $(function () {
-            var modalM = humhub.require("ui.modal");
-            var x = modalM.get("#jitsiMeet-modal");
-            x.load("<?= Url::to($jitsiRoomUrl); ?>");
-            x.$.on('hidden.bs.modal', function (e) {
+            var modalModule = humhub.require("ui.modal");
+            var modal = modalModule.get("jitsiMeet-modal");
+            modal.load("<?= Url::to($jitsiRoomUrl); ?>");
+            modal.$.on('hidden.bs.modal', function (e) {
                 window.location = "<?= Url::home() ?>";
             });
         });
