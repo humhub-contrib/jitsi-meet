@@ -1,8 +1,8 @@
 Changelog
 =========
 
-1.1.5 (Unreleased)
-----------------------
+1.1.5 (May 6, 2022)
+-------------------
 - Fix #30: Fix rooms loading
 
 
