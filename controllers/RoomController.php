@@ -53,7 +53,6 @@ class RoomController extends Controller
         return $this->render('open', [
             'jitsiDomain' => $this->module->getSettingsForm()->jitsiDomain,
             'jitsiRoomUrl' => $jitsiRoomUrl,
-            'name' => $name
         ]);
     }
 
@@ -102,7 +101,6 @@ class RoomController extends Controller
         }
 
         return $this->renderAjax('modal', [
-            'jitsiDomain' => 'meet.jit.si',
             'jwt' => $jwt,
             'name' => $name
         ]);

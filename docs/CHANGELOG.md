@@ -1,6 +1,11 @@
 Changelog
 =========
 
+1.1.5 (Unreleased)
+----------------------
+- Fix #30: Fix rooms loading
+
+
 1.1.4 (April 18, 2022)
 ----------------------
 - Fix #27: Fix assets on updating of disabled module
