@@ -9,7 +9,6 @@ return [
     'Default: Jitsi Meet' => '',
     'Default: empty, useful for public Jitsi server' => '',
     'Enable JWT Authentication' => '',
-    'Invite' => '',
     'Join' => '',
     'Name' => '',
     'Open conference room' => '',

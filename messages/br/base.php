@@ -9,9 +9,8 @@ return [
     'Default is meet.jit.si without "https://" prefix.' => '',
     'Default: Jitsi Meet' => '',
     'Default: empty, useful for public Jitsi server' => '',
-    'Invite' => '',
+    'Enable JWT Authentication' => '',
     'Join' => '',
     'Open conference room' => '',
     'Open in new window?' => '',
-    'Enable JWT Authentication' => '',
 ];
