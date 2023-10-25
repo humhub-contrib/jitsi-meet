@@ -1,6 +1,11 @@
 Changelog
 =========
 
+1.1.6 (Unreleased)
+-------------------
+- Fix #33: Fix visibility of the method `Controller::getAccessRules()`
+
+
 1.1.5 (May 6, 2022)
 -------------------
 - Fix #30: Fix rooms loading
