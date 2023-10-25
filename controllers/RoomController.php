@@ -13,7 +13,10 @@ use Yii;
  */
 class RoomController extends Controller
 {
-    public function getAccessRules()
+    /**
+     * @inheritdoc
+     */
+    protected function getAccessRules()
     {
         return [
             ['login' => ['index']]
