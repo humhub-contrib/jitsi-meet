@@ -1,8 +1,8 @@
 Changelog
 =========
 
-1.1.6 (Unreleased)
--------------------
+1.1.6 (November 9, 2023)
+-------------------------
 - Fix #33: Fix visibility of the method `Controller::getAccessRules()`
 - Fix #34: Fix JWT encoding function
 
