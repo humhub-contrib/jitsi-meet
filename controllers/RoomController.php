@@ -90,8 +90,8 @@ class RoomController extends Controller
                 )
             )
         );
-        $jwt = JWT::encode($token, $this->module->getSettingsForm()->jitsiAppSecret);
-        return $jwt;
+
+        return JWT::encode($token, $this->module->getSettingsForm()->jitsiAppSecret, 'HS256');
     }
 
     public function actionModal()
