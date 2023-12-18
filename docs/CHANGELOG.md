@@ -1,6 +1,11 @@
 Changelog
 =========
 
+1.1.7 (Unreleased)
+-------------------------
+- Fix #35: New group permission "Can access Jitsi Meet from main navigation"
+
+
 1.1.6 (November 9, 2023)
 -------------------------
 - Fix #33: Fix visibility of the method `Controller::getAccessRules()`

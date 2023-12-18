@@ -6,6 +6,7 @@ use Firebase\JWT\JWT;
 use humhub\components\Controller;
 use humhubContrib\modules\jitsiMeet\models\JoinRoomForm;
 use humhubContrib\modules\jitsiMeet\Module;
+use humhubContrib\modules\jitsiMeet\permissions\CanAccess;
 use Yii;
 
 /**
@@ -19,7 +20,7 @@ class RoomController extends Controller
     protected function getAccessRules()
     {
         return [
-            ['login' => ['index']]
+            ['permissions' => [CanAccess::class]]
         ];
     }
 

@@ -33,4 +33,14 @@ class Module extends \humhub\components\Module
         return Url::to(['/jitsi-meet/config']);
     }
 
+    /**
+     * @inheritdoc
+     */
+    public function getPermissions($contentContainer = null)
+    {
+        return [
+            new permissions\CanAccess()
+        ];
+    }
+
 }

@@ -2,16 +2,17 @@
 
 namespace humhubContrib\modules\jitsiMeet;
 
+use humhub\modules\ui\menu\MenuLink;
 use humhub\widgets\TopMenu;
+use humhubContrib\modules\jitsiMeet\permissions\CanAccess;
 use Yii;
-use yii\helpers\Url;
 
 class Events
 {
 
     public static function onTopMenuInit($event)
     {
-        if (Yii::$app->user->isGuest) {
+        if (Yii::$app->user->isGuest || !Yii::$app->user->can(CanAccess::class)) {
             return;
         }
 
@@ -21,18 +22,13 @@ class Events
         /** @var Module $module */
         $module = Yii::$app->getModule('jitsi-meet');
 
-        // Allow overwrite using translation
-        $label =  Yii::t('JitsiMeetModule.base', $module->getSettingsForm()->menuTitle);
-
-        $topNav->addItem([
-            'label' => $label,
-            'url' => Url::to(['/jitsi-meet/room']),
-            'icon' => '<i class="fa fa-video-camera"></i>',
-            'isActive' => (Yii::$app->controller->module && Yii::$app->controller->module->id == 'jitsi-meet'),
+        $topNav->addEntry(new MenuLink([
+            'label' => Yii::t('JitsiMeetModule.base', $module->getSettingsForm()->menuTitle),
+            'url' => ['/jitsi-meet/room'],
+            'icon' => 'video-camera',
+            'isActive' => MenuLink::isActiveState('jitsi-meet', 'room'),
             'sortOrder' => 400,
-        ]);
-
+        ]));
     }
-
 
 }
