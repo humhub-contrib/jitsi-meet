@@ -27,6 +27,11 @@ class CanAccess extends BasePermission
     /**
      * @inheritdoc
      */
+    protected $defaultState = self::STATE_ALLOW;
+
+    /**
+     * @inheritdoc
+     */
     protected $moduleId = 'jitsi-meet';
 
     /**
@@ -43,18 +48,6 @@ class CanAccess extends BasePermission
     public function getDescription()
     {
         return Yii::t('JitsiMeetModule.base', 'Can access Jitsi Meet from main navigation.');
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function getDefaultState($groupId)
-    {
-        if ($groupId == Group::getAdminGroupId()) {
-            return self::STATE_ALLOW;
-        }
-
-        return parent::getDefaultState($groupId);
     }
 
 }
