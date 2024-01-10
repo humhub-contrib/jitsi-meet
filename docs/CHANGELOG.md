@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.1.7 (January 10, 2023)
+1.1.7 (January 10, 2024)
 -------------------------
 - Fix #35: New group permission "Can access Jitsi Meet from main navigation"
 
