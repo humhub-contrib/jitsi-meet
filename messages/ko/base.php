@@ -8,7 +8,7 @@ return array (
   'Default: Jitsi Meet' => '',
   'Default: empty, useful for public Jitsi server' => '',
   'Enable JWT Authentication' => '',
-  'Join' => '',
+  'Join' => '가입',
   'Name' => '이름',
   'Open conference room' => '',
   'Open in new window?' => '',
