@@ -20,7 +20,7 @@ class RoomController extends Controller
     protected function getAccessRules()
     {
         return [
-            ['permissions' => [CanAccess::class]]
+            ['permissions' => [CanAccess::class], 'actions' => ['index']]
         ];
     }
 
