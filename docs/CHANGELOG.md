@@ -1,10 +1,9 @@
 Changelog
 =========
 
-1.1.8 (Unreleased)
+1.1.8 (January 30, 2024)
 -------------------------
 - Fix #37: Don't restrict an opening of a created room
-
 
 1.1.7 (January 10, 2024)
 -------------------------
