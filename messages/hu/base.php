@@ -13,4 +13,6 @@ return [
     'Name' => 'Név',
     'Open conference room' => 'Nyitott konferenciaterem',
     'Open in new window?' => 'Megnyitás új ablakban?',
+    'Can access Jitsi Meet' => '',
+    'Can access Jitsi Meet from main navigation.' => '',
 ];

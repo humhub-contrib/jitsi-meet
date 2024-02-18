@@ -13,4 +13,6 @@ return [
     'Name' => 'Име',
     'Open conference room' => 'Отвори конферентна стая',
     'Open in new window?' => 'Отвори в нов прозорец?',
+    'Can access Jitsi Meet' => '',
+    'Can access Jitsi Meet from main navigation.' => '',
 ];
