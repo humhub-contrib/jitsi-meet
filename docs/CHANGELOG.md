@@ -1,6 +1,10 @@
 Changelog
 =========
 
+1.1.9 (Unreleased)
+-------------------------
+- Fix #38: Fix missing room prefix in JWT token
+
 1.1.8 (January 30, 2024)
 -------------------------
 - Fix #37: Don't restrict an opening of a created room

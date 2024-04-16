@@ -78,21 +78,22 @@ class RoomController extends Controller
         $expire = $notBefore + 60; // Adding 60 seconds
         $jitsi = $this->module->getSettingsForm()->jitsiDomain;
         $appID = $this->module->getSettingsForm()->jitsiAppID;
-        $token = array(
+        $prefix = $this->module->getSettingsForm()->roomPrefix;
+        $token = [
             'iss' => $appID,
             'aud' => $jitsi,
             'sub' => $jitsi,
             'exp' => $expire,
-            'room' => $roomName,
-            'context' => array(
-                'user' => array(
+            'room' => $prefix . $roomName,
+            'context' => [
+                'user' => [
                     'name' => $userName,
-                    'email' => $userEmail
-                )
-            )
-        );
+                    'email' => $userEmail,
+                ],
+            ],
+        ];
 
-        return JWT::encode($token, $this->module->getSettingsForm()->jitsiAppSecret, 'HS256');
+        return JWT::encode($token, (string) $this->module->getSettingsForm()->jitsiAppSecret, 'HS256');
     }
 
     public function actionModal()
