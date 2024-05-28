@@ -7,9 +7,9 @@
     "conference",
     "jitsi"
   ],
-  "version": "1.1.9",
+  "version": "1.2.0",
   "humhub": {
-    "minVersion": "1.7"
+    "minVersion": "1.17"
   },
   "homepage": "https://github.com/humhub-contrib/jitsi-meet",
   "screenshots": [
