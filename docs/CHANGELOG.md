@@ -1,6 +1,10 @@
 Changelog
 =========
 
+1.2.0 (Unreleased)
+----------------------
+- Fix #40: Update module resources path
+
 1.1.9 (April 16, 2024)
 ----------------------
 - Fix #38: Fix missing room prefix in JWT token
