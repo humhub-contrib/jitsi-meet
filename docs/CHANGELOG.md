@@ -1,6 +1,10 @@
 Changelog
 =========
 
+1.1.10 (Unreleased)
+----------------------
+- Enh #: Use PHP CS Fixer
+
 1.1.9 (April 16, 2024)
 ----------------------
 - Fix #38: Fix missing room prefix in JWT token
