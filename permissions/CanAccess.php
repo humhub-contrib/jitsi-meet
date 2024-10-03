@@ -13,7 +13,6 @@ use Yii;
 
 class CanAccess extends BasePermission
 {
-
     /**
      * @inheritdoc
      */

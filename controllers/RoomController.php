@@ -20,7 +20,7 @@ class RoomController extends Controller
     protected function getAccessRules()
     {
         return [
-            ['permissions' => [CanAccess::class], 'actions' => ['index']]
+            ['permissions' => [CanAccess::class], 'actions' => ['index']],
         ];
     }
 
@@ -33,7 +33,7 @@ class RoomController extends Controller
 
         return $this->render('index', [
             'model' => $model,
-            'jitsiDomain' => $this->module->getSettingsForm()->jitsiDomain
+            'jitsiDomain' => $this->module->getSettingsForm()->jitsiDomain,
         ]);
     }
 
@@ -107,7 +107,7 @@ class RoomController extends Controller
 
         return $this->renderAjax('modal', [
             'jwt' => $jwt,
-            'name' => $name
+            'name' => $name,
         ]);
 
     }
