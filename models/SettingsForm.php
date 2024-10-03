@@ -7,7 +7,6 @@ use yii\base\Model;
 
 class SettingsForm extends Model
 {
-
     public $jitsiDomain;
     public $menuTitle;
     public $roomPrefix;
@@ -25,11 +24,11 @@ class SettingsForm extends Model
             ['jitsiDomain', 'string'],
             [['menuTitle', 'jitsiAppID', 'jitsiAppSecret', 'roomPrefix'], 'string'],
             ['enableJwt', 'boolean'],
-            [['jitsiAppID', 'jitsiAppSecret'], 'required', 'when' => function($model) {
+            [['jitsiAppID', 'jitsiAppSecret'], 'required', 'when' => function ($model) {
                 return $model->enableJwt;
             }, 'whenClient' => "function (attribute, value) {
                 return $('#settingsform-enablejwt').is(':checked');
-            }"]
+            }"],
         ];
     }
 

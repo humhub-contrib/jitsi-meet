@@ -9,7 +9,6 @@ use Yii;
 
 class Events
 {
-
     public static function onTopMenuInit($event)
     {
         if (Yii::$app->user->isGuest || !Yii::$app->user->can(CanAccess::class)) {

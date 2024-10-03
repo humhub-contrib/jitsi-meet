@@ -61,7 +61,7 @@ class RoomWidget extends JsWidget
             'roomPrefix' => $module->getSettingsForm()->roomPrefix,
             'jitsiDomain' => $module->getSettingsForm()->jitsiDomain,
             'usermail' => $email,
-            'userdisplayname' => $name
+            'userdisplayname' => $name,
         ];
     }
 
