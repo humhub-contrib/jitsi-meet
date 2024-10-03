@@ -3,7 +3,7 @@ Changelog
 
 1.1.10 (Unreleased)
 ----------------------
-- Enh #: Use PHP CS Fixer
+- Enh #41: Use PHP CS Fixer
 
 1.1.9 (April 16, 2024)
 ----------------------
