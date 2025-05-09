@@ -1,9 +1,10 @@
 Changelog
 =========
 
-1.1.10 (Unreleased)
-----------------------
+1.2.0 (unreleased)
+-------------------------
 - Enh #41: Use PHP CS Fixer
+- Enh: Migration to Bootstrap 5 for HumHub 1.18
 
 1.1.9 (April 16, 2024)
 ----------------------
