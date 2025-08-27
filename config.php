@@ -12,7 +12,6 @@ return [
         ['class' => TopMenu::class, 'event' => TopMenu::EVENT_INIT, 'callback' => ['humhubContrib\modules\jitsiMeet\Events', 'onTopMenuInit']],
     ],
     'urlManagerRules' => [
-        '/conference/<name>' => 'jitsi-meet/room/open'
-    ]
+        '/conference/<name>' => 'jitsi-meet/room/open',
+    ],
 ];
-?>

@@ -9,13 +9,12 @@ use yii\web\View;
 
 class Assets extends AssetBundle
 {
-
     public $publishOptions = [
-        'forceCopy' => true
+        'forceCopy' => true,
     ];
 
     public $jsOptions = [
-        'position' => View::POS_BEGIN
+        'position' => View::POS_BEGIN,
     ];
 
     public function init()
@@ -32,7 +31,7 @@ class Assets extends AssetBundle
         if ($module instanceof Module) {
             $this->js = [
                 'https://' . $module->getSettingsForm()->jitsiDomain . '/external_api.js',
-                'humhub.jitsiMeet.js'
+                'humhub.jitsiMeet.js',
             ];
         }
     }
