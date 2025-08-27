@@ -1,6 +1,6 @@
 <?php
 
-use humhub\libs\Html;
+use humhub\helpers\Html;
 use humhub\widgets\SiteLogo;
 use yii\helpers\Url;
 
@@ -17,7 +17,7 @@ use yii\helpers\Url;
         $(function () {
             var modalModule = humhub.require("ui.modal");
             var modal = modalModule.get("jitsiMeet-modal");
-            modal.load("<?= Url::to($jitsiRoomUrl); ?>");
+            modal.load("<?= Url::to($jitsiRoomUrl) ?>");
             modal.$.on('hidden.bs.modal', function (e) {
                 window.location = "<?= Url::home() ?>";
             });

@@ -1,7 +1,7 @@
 <?php
 
-use humhub\widgets\Button;
-use yii\bootstrap\ActiveForm;
+use humhub\widgets\bootstrap\Button;
+use humhub\widgets\form\ActiveForm;
 
 /* @var $model \humhubContrib\modules\jitsiMeet\models\SettingsForm */
 
@@ -9,11 +9,11 @@ $script = <<< JS
 $(document).ready(function () {
     function displayJwtParams(){
         if ( $('#settingsform-enablejwt').is(':checked') ) {
-          $('.field-settingsform-jitsiappid').show();
-          $('.field-settingsform-jitsiappsecret').show();
+          $('.field-settingsform-jitsiappid').removeClass('d-none');
+          $('.field-settingsform-jitsiappsecret').removeClass('d-none');
         } else {
-          $('.field-settingsform-jitsiappid').hide();
-          $('.field-settingsform-jitsiappsecret').hide();
+          $('.field-settingsform-jitsiappid').addClass('d-none');
+          $('.field-settingsform-jitsiappsecret').addClass('d-none');
         }
     }
 
