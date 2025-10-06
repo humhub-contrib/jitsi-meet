@@ -20,11 +20,11 @@ class Events
         $topNav = $event->sender;
 
         /** @var Module $module */
-        $module = Yii::$app->getModule('jitsi-meet');
+        $module = Yii::$app->getModule('jitsi-meet-cloud');
 
         $topNav->addEntry(new MenuLink([
             'label' => Yii::t('JitsiMeetModule.base', $module->getSettingsForm()->menuTitle),
-            'url' => ['/jitsi-meet/room'],
+            'url' => ['/jitsi-meet-cloud/room'],
             'icon' => 'video-camera',
             'isActive' => MenuLink::isActiveState('jitsi-meet', 'room'),
             'sortOrder' => 400,

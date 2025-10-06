@@ -1,17 +1,20 @@
 {
-  "id": "jitsi-meet",
-  "name": "Jitsi Meet",
-  "description": "Adds free, secure, flexible, open-source video conferencing.",
+  "id": "jitsi-meet-cloud",
+  "name": "Jitsi Meet Cloud (8x8 JaaS)",
+  "description": "Video conferencing with 8x8 JaaS cloud integration - secure, scalable, enterprise-ready.",
   "keywords": [
     "video",
     "conference",
-    "jitsi"
+    "jitsi",
+    "8x8",
+    "jaas",
+    "cloud"
   ],
-  "version": "1.1.9",
+  "version": "1.2.0",
   "humhub": {
     "minVersion": "1.7"
   },
-  "homepage": "https://github.com/humhub-contrib/jitsi-meet",
+  "homepage": "https://github.com/jhweb/jitsi-meet",
   "screenshots": [
     "resources/screen1.PNG", 
     "resources/screen2.PNG", 

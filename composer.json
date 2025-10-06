@@ -1,6 +1,6 @@
 {
-    "name": "humhub-contrib/jitsi-meet",
-    "description": "HumHub Jitsi Meet module with optional 8x8 JaaS cloud mode",
+    "name": "jhweb/jitsi-meet-cloud",
+    "description": "HumHub Jitsi Meet Cloud module with 8x8 JaaS integration",
     "type": "library",
     "require": {
         "php": ">=7.4",
@@ -8,7 +8,7 @@
     },
     "autoload": {
         "psr-4": {
-            "humhubContrib\\modules\\jitsiMeet\\": ""
+            "humhubContrib\\modules\\jitsiMeetCloud\\": ""
         }
     }
 }

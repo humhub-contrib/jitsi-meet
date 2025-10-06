@@ -47,7 +47,7 @@ class RoomController extends Controller
         Yii::info("RoomController::actionOpen - Room: {$name}", 'jitsi-meet');
 
         // Default modal route and params
-        $jitsiRoomUrl = ['/jitsi-meet/room/modal', 'name' => $name];
+        $jitsiRoomUrl = ['/jitsi-meet-cloud/room/modal', 'name' => $name];
 
         // Determine mode
         $mode = $settings->mode ?: 'self_hosted';

@@ -141,64 +141,64 @@ class SettingsForm extends Model
     public function init()
     {
 
-        $this->menuTitle = Yii::$app->getModule('jitsi-meet')->settings->get('menuTitle');
+        $this->menuTitle = Yii::$app->getModule('jitsi-meet-cloud')->settings->get('menuTitle');
         if (empty($this->menuTitle)) {
             $this->menuTitle = 'Jitsi Meet';
         }
 
-        $this->jitsiDomain = Yii::$app->getModule('jitsi-meet')->settings->get('jitsiDomain');
+        $this->jitsiDomain = Yii::$app->getModule('jitsi-meet-cloud')->settings->get('jitsiDomain');
         if (empty($this->jitsiDomain)) {
             $this->jitsiDomain = 'meet.jit.si';
         }
 
-        $this->jitsiAppID = Yii::$app->getModule('jitsi-meet')->settings->get('jitsiAppID');
+        $this->jitsiAppID = Yii::$app->getModule('jitsi-meet-cloud')->settings->get('jitsiAppID');
         if (empty($this->jitsiAppID)) {
             $this->jitsiAppID = '';
         }
-        $this->jitsiAppSecret = Yii::$app->getModule('jitsi-meet')->settings->get('jitsiAppSecret');
+        $this->jitsiAppSecret = Yii::$app->getModule('jitsi-meet-cloud')->settings->get('jitsiAppSecret');
         if (empty($this->jitsiAppSecret)) {
             $this->jitsiAppSecret = '';
         }
 
-        $this->roomPrefix = Yii::$app->getModule('jitsi-meet')->settings->get('roomPrefix');
+        $this->roomPrefix = Yii::$app->getModule('jitsi-meet-cloud')->settings->get('roomPrefix');
         if (empty($this->roomPrefix)) {
             $this->roomPrefix = '';
         }
 
-        $this->enableJwt = Yii::$app->getModule('jitsi-meet')->settings->get('enableJwt');
+        $this->enableJwt = Yii::$app->getModule('jitsi-meet-cloud')->settings->get('enableJwt');
         if (empty($this->enableJwt)) {
             $this->enableJwt = 0;
         }
 
         // New: dual-mode and JaaS settings
-        $this->mode = Yii::$app->getModule('jitsi-meet')->settings->get('mode');
+        $this->mode = Yii::$app->getModule('jitsi-meet-cloud')->settings->get('mode');
         if (empty($this->mode)) {
             $this->mode = 'self_hosted';
         }
 
-        $this->jaasAppId = Yii::$app->getModule('jitsi-meet')->settings->get('jaasAppId');
+        $this->jaasAppId = Yii::$app->getModule('jitsi-meet-cloud')->settings->get('jaasAppId');
         if (empty($this->jaasAppId)) {
             $this->jaasAppId = '';
         }
 
-        $this->jaasKid = Yii::$app->getModule('jitsi-meet')->settings->get('jaasKid');
+        $this->jaasKid = Yii::$app->getModule('jitsi-meet-cloud')->settings->get('jaasKid');
         if (empty($this->jaasKid)) {
             $this->jaasKid = '';
         }
 
-        $this->jaasPrivateKeyPath = Yii::$app->getModule('jitsi-meet')->settings->get('jaasPrivateKeyPath');
+        $this->jaasPrivateKeyPath = Yii::$app->getModule('jitsi-meet-cloud')->settings->get('jaasPrivateKeyPath');
         if (empty($this->jaasPrivateKeyPath)) {
             $this->jaasPrivateKeyPath = '';
         }
 
-        $this->jaasDomain = Yii::$app->getModule('jitsi-meet')->settings->get('jaasDomain');
+        $this->jaasDomain = Yii::$app->getModule('jitsi-meet-cloud')->settings->get('jaasDomain');
         if (empty($this->jaasDomain)) {
             $this->jaasDomain = '8x8.vc';
         }
 
-        $this->jaasEnableRecording = (int) Yii::$app->getModule('jitsi-meet')->settings->get('jaasEnableRecording');
-        $this->jaasEnableLivestreaming = (int) Yii::$app->getModule('jitsi-meet')->settings->get('jaasEnableLivestreaming');
-        $this->jaasEnableModeration = (int) Yii::$app->getModule('jitsi-meet')->settings->get('jaasEnableModeration');
+        $this->jaasEnableRecording = (int) Yii::$app->getModule('jitsi-meet-cloud')->settings->get('jaasEnableRecording');
+        $this->jaasEnableLivestreaming = (int) Yii::$app->getModule('jitsi-meet-cloud')->settings->get('jaasEnableLivestreaming');
+        $this->jaasEnableModeration = (int) Yii::$app->getModule('jitsi-meet-cloud')->settings->get('jaasEnableModeration');
     }
 
     /**
@@ -206,24 +206,24 @@ class SettingsForm extends Model
      */
     public function save()
     {
-        Yii::$app->getModule('jitsi-meet')->settings->set('menuTitle', $this->menuTitle);
-        Yii::$app->getModule('jitsi-meet')->settings->set('jitsiDomain', $this->jitsiDomain);
-        Yii::$app->getModule('jitsi-meet')->settings->set('jitsiAppID', $this->jitsiAppID);
-        Yii::$app->getModule('jitsi-meet')->settings->set('jitsiAppSecret', $this->jitsiAppSecret);
-        Yii::$app->getModule('jitsi-meet')->settings->set('enableJwt', $this->enableJwt);
+        Yii::$app->getModule('jitsi-meet-cloud')->settings->set('menuTitle', $this->menuTitle);
+        Yii::$app->getModule('jitsi-meet-cloud')->settings->set('jitsiDomain', $this->jitsiDomain);
+        Yii::$app->getModule('jitsi-meet-cloud')->settings->set('jitsiAppID', $this->jitsiAppID);
+        Yii::$app->getModule('jitsi-meet-cloud')->settings->set('jitsiAppSecret', $this->jitsiAppSecret);
+        Yii::$app->getModule('jitsi-meet-cloud')->settings->set('enableJwt', $this->enableJwt);
 
         // Dual-mode and JaaS settings
-        Yii::$app->getModule('jitsi-meet')->settings->set('mode', $this->mode);
-        Yii::$app->getModule('jitsi-meet')->settings->set('jaasAppId', $this->jaasAppId);
-        Yii::$app->getModule('jitsi-meet')->settings->set('jaasKid', $this->jaasKid);
-        Yii::$app->getModule('jitsi-meet')->settings->set('jaasPrivateKeyPath', $this->jaasPrivateKeyPath);
-        Yii::$app->getModule('jitsi-meet')->settings->set('jaasDomain', $this->jaasDomain);
-        Yii::$app->getModule('jitsi-meet')->settings->set('jaasEnableRecording', (int)$this->jaasEnableRecording);
-        Yii::$app->getModule('jitsi-meet')->settings->set('jaasEnableLivestreaming', (int)$this->jaasEnableLivestreaming);
-        Yii::$app->getModule('jitsi-meet')->settings->set('jaasEnableModeration', (int)$this->jaasEnableModeration);
+        Yii::$app->getModule('jitsi-meet-cloud')->settings->set('mode', $this->mode);
+        Yii::$app->getModule('jitsi-meet-cloud')->settings->set('jaasAppId', $this->jaasAppId);
+        Yii::$app->getModule('jitsi-meet-cloud')->settings->set('jaasKid', $this->jaasKid);
+        Yii::$app->getModule('jitsi-meet-cloud')->settings->set('jaasPrivateKeyPath', $this->jaasPrivateKeyPath);
+        Yii::$app->getModule('jitsi-meet-cloud')->settings->set('jaasDomain', $this->jaasDomain);
+        Yii::$app->getModule('jitsi-meet-cloud')->settings->set('jaasEnableRecording', (int)$this->jaasEnableRecording);
+        Yii::$app->getModule('jitsi-meet-cloud')->settings->set('jaasEnableLivestreaming', (int)$this->jaasEnableLivestreaming);
+        Yii::$app->getModule('jitsi-meet-cloud')->settings->set('jaasEnableModeration', (int)$this->jaasEnableModeration);
 
         $this->roomPrefix = ucwords(preg_replace("/[^A-Za-z0-9]/", '', $this->roomPrefix));
-        Yii::$app->getModule('jitsi-meet')->settings->set('roomPrefix', $this->roomPrefix);
+        Yii::$app->getModule('jitsi-meet-cloud')->settings->set('roomPrefix', $this->roomPrefix);
 
         return true;
     }
