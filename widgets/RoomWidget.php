@@ -55,14 +55,23 @@ class RoomWidget extends JsWidget
             $name = $user->displayName;
         }
 
-        return [
+        $data = [
             'jwt' => $this->jwt,
             'roomName' => $this->roomName,
             'roomPrefix' => $module->getSettingsForm()->roomPrefix,
+            // Domains and mode for dual-mode support
             'jitsiDomain' => $module->getSettingsForm()->jitsiDomain,
+            'jaasDomain' => $module->getSettingsForm()->jaasDomain,
+            'mode' => $module->getSettingsForm()->mode,
+            'jaasAppId' => $module->getSettingsForm()->jaasAppId,
             'usermail' => $email,
-            'userdisplayname' => $name,
+            'userdisplayname' => $name
         ];
+
+        // Enhanced logging for debugging
+        Yii::info('RoomWidget::getData - Data being passed to frontend: ' . json_encode($data, JSON_PRETTY_PRINT), 'jitsi-meet');
+
+        return $data;
     }
 
 }

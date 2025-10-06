@@ -1,29 +1,27 @@
 <?php
 
-use humhub\helpers\Html;
-use humhub\widgets\bootstrap\Button;
-use humhub\widgets\form\ActiveForm;
+use humhub\libs\Html;
+use humhub\widgets\Button;
+use yii\bootstrap\ActiveForm;
 
 /* @var $model \humhubContrib\modules\jitsiMeet\\models\JoinRoomForm */
 
 ?>
 <div class="container">
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <?= Yii::t('JitsiMeetModule.base', 'Open conference room'); ?>
-                </div>
-                <div class="panel-body">
-                    <?php $form = ActiveForm::begin(['layout' => 'horizontal', 'id' => 'jrform']); ?>
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <?= Yii::t('JitsiMeetModule.base', 'Open conference room'); ?>
+            </div>
+            <div class="panel-body">
+                <?php $form = ActiveForm::begin(['layout' => 'horizontal', 'id' => 'jrform']); ?>
 
-                    <?= $form->field($model, 'room'); ?>
-                    <?= $form->field($model, 'newWindow')->checkbox(); ?>
+                <?= $form->field($model, 'room'); ?>
+                <?= $form->field($model, 'newWindow')->checkbox(); ?>
+                
+                <?= Button::save(Yii::t('JitsiMeetModule.base', 'Join'))->loader(false)->submit() ?>
 
-                    <?= Button::save(Yii::t('JitsiMeetModule.base', 'Join'))->loader(false)->submit() ?>
-
-                    <?php ActiveForm::end(); ?>
-                </div>
+                <?php ActiveForm::end(); ?>
             </div>
         </div>
     </div>
@@ -37,3 +35,4 @@ use humhub\widgets\form\ActiveForm;
         return true;
     });
 </script>
+

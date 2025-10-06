@@ -2,11 +2,14 @@
 
 namespace humhubContrib\modules\jitsiMeet;
 
+
 use humhubContrib\modules\jitsiMeet\models\SettingsForm;
 use yii\helpers\Url;
 
 class Module extends \humhub\components\Module
 {
+    public $resourcesPath = 'resources';
+
     private $_settingsForm = null;
 
     /**
@@ -36,7 +39,7 @@ class Module extends \humhub\components\Module
     public function getPermissions($contentContainer = null)
     {
         return [
-            new permissions\CanAccess(),
+            new permissions\CanAccess()
         ];
     }
 

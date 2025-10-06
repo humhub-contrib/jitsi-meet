@@ -6,6 +6,7 @@ use Firebase\JWT\JWT;
 use humhub\components\Controller;
 use humhubContrib\modules\jitsiMeet\models\JoinRoomForm;
 use humhubContrib\modules\jitsiMeet\Module;
+use humhubContrib\modules\jitsiMeet\components\JaasJwtService;
 use humhubContrib\modules\jitsiMeet\permissions\CanAccess;
 use Yii;
 
@@ -20,7 +21,7 @@ class RoomController extends Controller
     protected function getAccessRules()
     {
         return [
-            ['permissions' => [CanAccess::class], 'actions' => ['index']],
+            ['permissions' => [CanAccess::class], 'actions' => ['index']]
         ];
     }
 
@@ -33,29 +34,63 @@ class RoomController extends Controller
 
         return $this->render('index', [
             'model' => $model,
-            'jitsiDomain' => $this->module->getSettingsForm()->jitsiDomain,
+            'jitsiDomain' => $this->module->getSettingsForm()->jitsiDomain
         ]);
     }
 
     public function actionOpen()
     {
         $name = $this->fixRoomName(Yii::$app->request->get('name'));
+        $settings = $this->module->getSettingsForm();
+
+        // Enhanced logging for debugging
+        Yii::info("RoomController::actionOpen - Room: {$name}", 'jitsi-meet');
+
+        // Default modal route and params
         $jitsiRoomUrl = ['/jitsi-meet/room/modal', 'name' => $name];
 
-        // generate JWT token if specified in configuration
-        if ($this->module->getSettingsForm()->enableJwt) {
-            // require the user to login if not authenticated
-            // JWT token generation is not allowed for guests
+        // Determine mode
+        $mode = $settings->mode ?: 'self_hosted';
+        Yii::info("RoomController::actionOpen - Mode: {$mode}", 'jitsi-meet');
+
+        if ($mode === 'jaas') {
+            Yii::info('RoomController::actionOpen - JaaS mode selected', 'jitsi-meet');
+            
             if (Yii::$app->user->isGuest) {
+                Yii::info('RoomController::actionOpen - User is guest, requiring login', 'jitsi-meet');
                 Yii::$app->user->loginRequired();
             }
-            // create JWT for the given room name
-            $jitsiRoomUrl['jwt'] = $this->createJWT($name);
+            
+            $user = Yii::$app->user->getIdentity();
+            $isModerator = $this->isModeratorForCurrentContext();
+            
+            Yii::info("RoomController::actionOpen - User: {$user->displayName} (ID: {$user->id}), Moderator: " . ($isModerator ? 'true' : 'false'), 'jitsi-meet');
+            
+            $jwt = JaasJwtService::createToken($user, $name, $isModerator);
+            if (!empty($jwt)) {
+                $jitsiRoomUrl['jwt'] = $jwt;
+                Yii::info('RoomController::actionOpen - JWT generated and added to URL', 'jitsi-meet');
+            } else {
+                Yii::error('RoomController::actionOpen - JWT generation failed', 'jitsi-meet');
+            }
+        } else {
+            Yii::info('RoomController::actionOpen - Self-hosted mode selected', 'jitsi-meet');
+            // Legacy HS256 path
+            if ($this->module->getSettingsForm()->enableJwt) {
+                if (Yii::$app->user->isGuest) {
+                    Yii::$app->user->loginRequired();
+                }
+                $jitsiRoomUrl['jwt'] = $this->createJWT($name);
+                Yii::info('RoomController::actionOpen - Legacy JWT generated', 'jitsi-meet');
+            }
         }
+
+        $domain = $mode === 'jaas' ? $settings->jaasDomain : $settings->jitsiDomain;
+        Yii::info("RoomController::actionOpen - Using domain: {$domain}", 'jitsi-meet');
 
         $this->layout = "@humhub/modules/user/views/layouts/main";
         return $this->render('open', [
-            'jitsiDomain' => $this->module->getSettingsForm()->jitsiDomain,
+            'jitsiDomain' => $domain,
             'jitsiRoomUrl' => $jitsiRoomUrl,
         ]);
     }
@@ -101,13 +136,16 @@ class RoomController extends Controller
         $name = $this->fixRoomName(Yii::$app->request->get('name'));
         $jwt = Yii::$app->request->get('jwt');
 
+        Yii::info("RoomController::actionModal - Room: {$name}, JWT present: " . (!empty($jwt) ? 'yes' : 'no'), 'jitsi-meet');
+
         if (!Yii::$app->request->isAjax) {
+            Yii::info('RoomController::actionModal - Not AJAX request, redirecting', 'jitsi-meet');
             return $this->redirect(['open', 'name' => $name]);
         }
 
         return $this->renderAjax('modal', [
             'jwt' => $jwt,
-            'name' => $name,
+            'name' => $name
         ]);
 
     }
@@ -125,4 +163,13 @@ class RoomController extends Controller
         return $name;
     }
 
+    private function isModeratorForCurrentContext(): bool
+    {
+        // Simple default: logged-in users can be moderators; adjust for space roles as needed
+        if (Yii::$app->user->isGuest) {
+            return false;
+        }
+        // Extend here: map HumHub space owners/admins to moderators
+        return true;
+    }
 }

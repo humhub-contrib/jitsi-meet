@@ -9,12 +9,13 @@ use yii\web\View;
 
 class Assets extends AssetBundle
 {
+
     public $publishOptions = [
-        'forceCopy' => true,
+        'forceCopy' => true
     ];
 
     public $jsOptions = [
-        'position' => View::POS_BEGIN,
+        'position' => View::POS_BEGIN
     ];
 
     public function init()
@@ -29,10 +30,19 @@ class Assets extends AssetBundle
         /** @var Module $module */
         $module = Yii::$app->getModule('jitsi-meet');
         if ($module instanceof Module) {
-            $this->js = [
-                'https://' . $module->getSettingsForm()->jitsiDomain . '/external_api.js',
-                'humhub.jitsiMeet.js',
-            ];
+            $mode = $module->getSettingsForm()->mode;
+            if ($mode === 'jaas') {
+                $domain = $module->getSettingsForm()->jaasDomain ?: '8x8.vc';
+                $this->js = [
+                    'https://' . $domain . '/libs/external_api.min.js',
+                    'humhub.jitsiMeet.js'
+                ];
+            } else {
+                $this->js = [
+                    'https://' . $module->getSettingsForm()->jitsiDomain . '/external_api.js',
+                    'humhub.jitsiMeet.js'
+                ];
+            }
         }
     }
 

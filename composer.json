@@ -1,0 +1,14 @@
+{
+    "name": "humhub-contrib/jitsi-meet",
+    "description": "HumHub Jitsi Meet module with optional 8x8 JaaS cloud mode",
+    "type": "library",
+    "require": {
+        "php": ">=7.4",
+        "firebase/php-jwt": "^6.9"
+    },
+    "autoload": {
+        "psr-4": {
+            "humhubContrib\\modules\\jitsiMeet\\": ""
+        }
+    }
+}
