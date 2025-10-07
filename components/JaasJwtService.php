@@ -20,7 +20,7 @@ class JaasJwtService
     public static function createToken($user, $roomName, $isModerator = false)
     {
         /** @var Module $module */
-        $module = Yii::$app->getModule('jitsi-meet-cloud');
+        $module = Yii::$app->getModule('jitsi-meet-cloud-8x8');
         $settings = $module->getSettingsForm();
 
         $appId = $settings->jaasAppId;

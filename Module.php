@@ -30,7 +30,7 @@ class Module extends \humhub\components\Module
      */
     public function getConfigUrl()
     {
-        return Url::to(['/jitsi-meet-cloud/config']);
+        return Url::to(['/jitsi-meet-cloud-8x8/config']);
     }
 
     /**

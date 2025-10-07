@@ -28,7 +28,7 @@ class Assets extends AssetBundle
     private function initJitsiApiJs()
     {
         /** @var Module $module */
-        $module = Yii::$app->getModule('jitsi-meet-cloud');
+        $module = Yii::$app->getModule('jitsi-meet-cloud-8x8');
         if ($module instanceof Module) {
             $mode = $module->getSettingsForm()->mode;
             if ($mode === 'jaas') {

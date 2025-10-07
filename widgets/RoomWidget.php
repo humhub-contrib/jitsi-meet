@@ -28,7 +28,7 @@ class RoomWidget extends JsWidget
     public function run()
     {
         /** @var Module $module */
-        $module = Yii::$app->getModule('jitsi-meet-cloud');
+        $module = Yii::$app->getModule('jitsi-meet-cloud-8x8');
 
         return $this->render('room', [
             'options' => $this->getOptions(),
@@ -44,7 +44,7 @@ class RoomWidget extends JsWidget
     public function getData()
     {
         /** @var Module $module */
-        $module = Yii::$app->getModule('jitsi-meet-cloud');
+        $module = Yii::$app->getModule('jitsi-meet-cloud-8x8');
 
         $name = '';
         $email = '';
