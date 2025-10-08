@@ -51,7 +51,7 @@ $this->registerJs($script);
 
 <div class="panel panel-default">
 
-    <div class="panel-heading"><?= Yii::t('JitsiMeetModule.base', '<strong>Jitsi</strong> module configuration'); ?></div>
+    <div class="panel-heading"><?= Yii::t('JitsiMeetCloud8x8Module.base', '<strong>Jitsi</strong> module configuration'); ?></div>
 
     <div class="panel-body">
         <?php $form = ActiveForm::begin(['id' => 'configure-form']); ?>
@@ -82,7 +82,7 @@ $this->registerJs($script);
 <?php if ($model->mode === 'jaas'): ?>
 <div class="panel panel-info">
     <div class="panel-heading">
-        <h4><?= Yii::t('JitsiMeetModule.base', 'JaaS Debug Information') ?></h4>
+        <h4><?= Yii::t('JitsiMeetCloud8x8Module.base', 'JaaS Debug Information') ?></h4>
     </div>
     <div class="panel-body">
         

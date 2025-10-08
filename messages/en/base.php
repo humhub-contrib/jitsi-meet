@@ -1,0 +1,28 @@
+<?php
+
+return [
+    '<strong>Jitsi</strong> module configuration' => '<strong>Jitsi</strong> module configuration',
+    'Application ID shared with a private Jitsi server used to generate JWT token for authentication. Default: empty, no JWT token authentication will be used.' => 'Application ID shared with a private Jitsi server used to generate JWT token for authentication. Default: empty, no JWT token authentication will be used.',
+    'Application secret shared with a private Jitsi server used to sign JWT token for authentication. Default: empty, needed if JWT token should be generated.' => 'Application secret shared with a private Jitsi server used to sign JWT token for authentication. Default: empty, needed if JWT token should be generated.',
+    'Close' => 'Close',
+    'Default is meet.jit.si without "https://" prefix.' => 'Default is meet.jit.si without "https://" prefix.',
+    'Default: Jitsi Meet' => 'Default: Jitsi Meet',
+    'Default: empty, useful for public Jitsi server' => 'Default: empty, useful for public Jitsi server',
+    'Enable JWT Authentication' => 'Enable JWT Authentication',
+    'Join' => 'Join',
+    'Name' => 'Name',
+    'Open conference room' => 'Open conference room',
+    'Open in new window?' => 'Open in new window?',
+    'Can access Jitsi Meet' => 'Can access Jitsi Meet',
+    'Can access Jitsi Meet from main navigation.' => 'Can access Jitsi Meet from main navigation.',
+    'JaaS JWT Debug Test' => 'JaaS JWT Debug Test',
+    'JaaS Debug Information' => 'JaaS Debug Information',
+    'Select meeting mode: self-hosted Jitsi or 8x8 JaaS' => 'Select meeting mode: self-hosted Jitsi or 8x8 JaaS',
+    '8x8 JaaS App ID (sub).' => '8x8 JaaS App ID (sub).',
+    '8x8 JaaS API Key (kid).' => '8x8 JaaS API Key (kid).',
+    'Filesystem path to the RS256 private key (not stored in DB).' => 'Filesystem path to the RS256 private key (not stored in DB).',
+    '8x8 JaaS domain, default: 8x8.vc' => '8x8 JaaS domain, default: 8x8.vc',
+    'Enable recording feature for JaaS users.' => 'Enable recording feature for JaaS users.',
+    'Enable livestreaming feature for JaaS users.' => 'Enable livestreaming feature for JaaS users.',
+    'Enable moderation features for JaaS users.' => 'Enable moderation features for JaaS users.',
+];

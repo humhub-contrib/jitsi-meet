@@ -39,7 +39,7 @@ class CanAccess extends BasePermission
      */
     public function getTitle()
     {
-        return Yii::t('JitsiMeetModule.base', 'Can access Jitsi Meet');
+        return Yii::t('JitsiMeetCloud8x8Module.base', 'Can access Jitsi Meet');
     }
 
     /**
@@ -47,7 +47,7 @@ class CanAccess extends BasePermission
      */
     public function getDescription()
     {
-        return Yii::t('JitsiMeetModule.base', 'Can access Jitsi Meet from main navigation.');
+        return Yii::t('JitsiMeetCloud8x8Module.base', 'Can access Jitsi Meet from main navigation.');
     }
 
 }

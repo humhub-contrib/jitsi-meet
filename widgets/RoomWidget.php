@@ -34,7 +34,7 @@ class RoomWidget extends JsWidget
             'options' => $this->getOptions(),
             'roomName' => $this->roomName,
             # Allow overwriting via translation config
-            'moduleLabel' => Yii::t('JitsiMeetModule.base', $module->getSettingsForm()->menuTitle),
+            'moduleLabel' => Yii::t('JitsiMeetCloud8x8Module.base', $module->getSettingsForm()->menuTitle),
         ]);
     }
 

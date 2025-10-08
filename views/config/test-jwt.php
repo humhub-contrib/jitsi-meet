@@ -10,7 +10,7 @@ use yii\helpers\Url;
 
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3><?= Yii::t('JitsiMeetModule.base', 'JaaS JWT Debug Test') ?></h3>
+        <h3><?= Yii::t('JitsiMeetCloud8x8Module.base', 'JaaS JWT Debug Test') ?></h3>
     </div>
     <div class="panel-body">
         
