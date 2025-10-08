@@ -1,8 +1,8 @@
 <?php
 
-namespace humhubContrib\modules\jitsiMeet\assets;
+namespace humhubContrib\modules\jitsiMeetCloud8x8\assets;
 
-use humhubContrib\modules\jitsiMeet\Module;
+use humhubContrib\modules\jitsiMeetCloud8x8\Module;
 use Yii;
 use yii\web\AssetBundle;
 use yii\web\View;

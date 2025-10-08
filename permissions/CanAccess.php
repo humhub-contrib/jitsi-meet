@@ -5,7 +5,7 @@
  * @license https://www.humhub.com/licences
  */
 
-namespace humhubContrib\modules\jitsiMeet\permissions;
+namespace humhubContrib\modules\jitsiMeetCloud8x8\permissions;
 
 use humhub\libs\BasePermission;
 use humhub\modules\user\models\Group;

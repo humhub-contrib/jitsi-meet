@@ -1,10 +1,10 @@
 <?php
 
-namespace humhubContrib\modules\jitsiMeet\widgets;
+namespace humhubContrib\modules\jitsiMeetCloud8x8\widgets;
 
 use Yii;
 use humhub\widgets\JsWidget;
-use humhubContrib\modules\jitsiMeet\Module;
+use humhubContrib\modules\jitsiMeetCloud8x8\Module;
 
 class RoomWidget extends JsWidget
 {

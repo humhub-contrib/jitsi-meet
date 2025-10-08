@@ -1,10 +1,10 @@
 <?php
 
-namespace humhubContrib\modules\jitsiMeet\components;
+namespace humhubContrib\modules\jitsiMeetCloud8x8\components;
 
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
-use humhubContrib\modules\jitsiMeet\Module;
+use humhubContrib\modules\jitsiMeetCloud8x8\Module;
 use Yii;
 
 class JaasJwtService

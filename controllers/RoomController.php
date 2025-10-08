@@ -1,13 +1,13 @@
 <?php
 
-namespace humhubContrib\modules\jitsiMeet\controllers;
+namespace humhubContrib\modules\jitsiMeetCloud8x8\controllers;
 
 use Firebase\JWT\JWT;
 use humhub\components\Controller;
-use humhubContrib\modules\jitsiMeet\models\JoinRoomForm;
-use humhubContrib\modules\jitsiMeet\Module;
-use humhubContrib\modules\jitsiMeet\components\JaasJwtService;
-use humhubContrib\modules\jitsiMeet\permissions\CanAccess;
+use humhubContrib\modules\jitsiMeetCloud8x8\models\JoinRoomForm;
+use humhubContrib\modules\jitsiMeetCloud8x8\Module;
+use humhubContrib\modules\jitsiMeetCloud8x8\components\JaasJwtService;
+use humhubContrib\modules\jitsiMeetCloud8x8\permissions\CanAccess;
 use Yii;
 
 /**

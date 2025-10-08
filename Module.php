@@ -1,9 +1,9 @@
 <?php
 
-namespace humhubContrib\modules\jitsiMeet;
+namespace humhubContrib\modules\jitsiMeetCloud8x8;
 
 
-use humhubContrib\modules\jitsiMeet\models\SettingsForm;
+use humhubContrib\modules\jitsiMeetCloud8x8\models\SettingsForm;
 use yii\helpers\Url;
 
 class Module extends \humhub\components\Module
@@ -39,7 +39,7 @@ class Module extends \humhub\components\Module
     public function getPermissions($contentContainer = null)
     {
         return [
-            new permissions\CanAccess()
+            new \humhubContrib\modules\jitsiMeetCloud8x8\permissions\CanAccess()
         ];
     }
 

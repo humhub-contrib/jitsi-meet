@@ -5,7 +5,7 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 
 /* @var $testResults array */
-/* @var $model \humhubContrib\modules\jitsiMeet\models\SettingsForm */
+/* @var $model \humhubContrib\modules\jitsiMeetCloud8x8\models\SettingsForm */
 ?>
 
 <div class="panel panel-default">

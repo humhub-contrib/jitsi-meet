@@ -1,7 +1,7 @@
 <?php
 
 use humhub\libs\Html;
-use humhubContrib\modules\jitsiMeet\widgets\RoomWidget;
+use humhubContrib\modules\jitsiMeetCloud8x8\widgets\RoomWidget;
 
 /* @var $jwt string */
 /* @var $name string */

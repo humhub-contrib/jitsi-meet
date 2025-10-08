@@ -4,7 +4,7 @@ use humhub\libs\Html;
 use humhub\widgets\Button;
 use yii\bootstrap\ActiveForm;
 
-/* @var $model \humhubContrib\modules\jitsiMeet\\models\JoinRoomForm */
+/* @var $model \humhubContrib\modules\jitsiMeetCloud8x8\\models\JoinRoomForm */
 
 ?>
 <div class="container">

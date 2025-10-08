@@ -5,7 +5,7 @@ use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
 use yii\helpers\Url;
 
-/* @var $model \humhubContrib\modules\jitsiMeet\models\SettingsForm */
+/* @var $model \humhubContrib\modules\jitsiMeetCloud8x8\models\SettingsForm */
 
 $script = <<< JS
 $(document).ready(function () {

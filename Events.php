@@ -1,10 +1,10 @@
 <?php
 
-namespace humhubContrib\modules\jitsiMeet;
+namespace humhubContrib\modules\jitsiMeetCloud8x8;
 
 use humhub\modules\ui\menu\MenuLink;
 use humhub\widgets\TopMenu;
-use humhubContrib\modules\jitsiMeet\permissions\CanAccess;
+use humhubContrib\modules\jitsiMeetCloud8x8\permissions\CanAccess;
 use Yii;
 
 class Events

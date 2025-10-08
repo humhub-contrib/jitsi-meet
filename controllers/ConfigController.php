@@ -1,9 +1,9 @@
 <?php
 
-namespace humhubContrib\modules\jitsiMeet\controllers;
+namespace humhubContrib\modules\jitsiMeetCloud8x8\controllers;
 
-use humhubContrib\modules\jitsiMeet\Module;
-use humhubContrib\modules\jitsiMeet\components\JaasJwtService;
+use humhubContrib\modules\jitsiMeetCloud8x8\Module;
+use humhubContrib\modules\jitsiMeetCloud8x8\components\JaasJwtService;
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 use Yii;

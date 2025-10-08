@@ -1,6 +1,6 @@
 <?php
 
-namespace humhubContrib\modules\jitsiMeet\models;
+namespace humhubContrib\modules\jitsiMeetCloud8x8\models;
 
 use Firebase\JWT\JWT;
 use Yii;

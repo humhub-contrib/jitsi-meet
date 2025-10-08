@@ -1,6 +1,6 @@
 <?php
 
-use humhubContrib\modules\jitsiMeet\assets\Assets;
+use humhubContrib\modules\jitsiMeetCloud8x8\assets\Assets;
 use yii\helpers\Url;
 use humhub\libs\Html;
 
