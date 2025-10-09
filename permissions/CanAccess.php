@@ -32,7 +32,7 @@ class CanAccess extends BasePermission
     /**
      * @inheritdoc
      */
-    protected $moduleId = 'jitsi-meet';
+    protected $moduleId = 'jitsi-meet-cloud-8x8';
 
     /**
      * @inheritdoc
