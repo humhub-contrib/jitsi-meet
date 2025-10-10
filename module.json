@@ -10,7 +10,7 @@
     "jaas",
     "cloud"
   ],
-  "version": "1.2.0",
+  "version": "1.2.1",
   "humhub": {
     "minVersion": "1.7"
   },

@@ -27,6 +27,11 @@ class SettingsForm extends Model
     public $jaasEnableLivestreaming;
     public $jaasEnableModeration;
 
+    // Permission default settings
+    public $defaultRecordingEnabled;
+    public $defaultLivestreamingEnabled;
+    public $defaultModerationEnabled;
+
 
     /**
      * @inheritdoc
@@ -45,6 +50,7 @@ class SettingsForm extends Model
             [['mode'], 'in', 'range' => ['self_hosted', 'jaas']],
             [['jaasAppId', 'jaasKid', 'jaasPrivateKeyPath', 'jaasDomain'], 'string'],
             [['jaasEnableRecording', 'jaasEnableLivestreaming', 'jaasEnableModeration'], 'boolean'],
+            [['defaultRecordingEnabled', 'defaultLivestreamingEnabled', 'defaultModerationEnabled'], 'boolean'],
             
             // JaaS mode validation
             [['jaasAppId', 'jaasKid', 'jaasPrivateKeyPath'], 'required', 'when' => function($model) {
@@ -132,6 +138,9 @@ class SettingsForm extends Model
             'jaasEnableRecording' => Yii::t('JitsiMeetCloud8x8Module.base', 'Enable recording feature for JaaS users.'),
             'jaasEnableLivestreaming' => Yii::t('JitsiMeetCloud8x8Module.base', 'Enable livestreaming feature for JaaS users.'),
             'jaasEnableModeration' => Yii::t('JitsiMeetCloud8x8Module.base', 'Enable moderation features for JaaS users.'),
+            'defaultRecordingEnabled' => Yii::t('JitsiMeetCloud8x8Module.base', 'Enable recording by default for users with permission.'),
+            'defaultLivestreamingEnabled' => Yii::t('JitsiMeetCloud8x8Module.base', 'Enable livestreaming by default for users with permission.'),
+            'defaultModerationEnabled' => Yii::t('JitsiMeetCloud8x8Module.base', 'Enable moderation features by default.'),
         ];
     }
 
@@ -199,6 +208,11 @@ class SettingsForm extends Model
         $this->jaasEnableRecording = (int) Yii::$app->getModule('jitsi-meet-cloud-8x8')->settings->get('jaasEnableRecording');
         $this->jaasEnableLivestreaming = (int) Yii::$app->getModule('jitsi-meet-cloud-8x8')->settings->get('jaasEnableLivestreaming');
         $this->jaasEnableModeration = (int) Yii::$app->getModule('jitsi-meet-cloud-8x8')->settings->get('jaasEnableModeration');
+
+        // Permission default settings
+        $this->defaultRecordingEnabled = (int) Yii::$app->getModule('jitsi-meet-cloud-8x8')->settings->get('defaultRecordingEnabled', 0);
+        $this->defaultLivestreamingEnabled = (int) Yii::$app->getModule('jitsi-meet-cloud-8x8')->settings->get('defaultLivestreamingEnabled', 0);
+        $this->defaultModerationEnabled = (int) Yii::$app->getModule('jitsi-meet-cloud-8x8')->settings->get('defaultModerationEnabled', 1);
     }
 
     /**
@@ -221,6 +235,11 @@ class SettingsForm extends Model
         Yii::$app->getModule('jitsi-meet-cloud-8x8')->settings->set('jaasEnableRecording', (int)$this->jaasEnableRecording);
         Yii::$app->getModule('jitsi-meet-cloud-8x8')->settings->set('jaasEnableLivestreaming', (int)$this->jaasEnableLivestreaming);
         Yii::$app->getModule('jitsi-meet-cloud-8x8')->settings->set('jaasEnableModeration', (int)$this->jaasEnableModeration);
+
+        // Permission default settings
+        Yii::$app->getModule('jitsi-meet-cloud-8x8')->settings->set('defaultRecordingEnabled', (int)$this->defaultRecordingEnabled);
+        Yii::$app->getModule('jitsi-meet-cloud-8x8')->settings->set('defaultLivestreamingEnabled', (int)$this->defaultLivestreamingEnabled);
+        Yii::$app->getModule('jitsi-meet-cloud-8x8')->settings->set('defaultModerationEnabled', (int)$this->defaultModerationEnabled);
 
         $this->roomPrefix = ucwords(preg_replace("/[^A-Za-z0-9]/", '', $this->roomPrefix));
         Yii::$app->getModule('jitsi-meet-cloud-8x8')->settings->set('roomPrefix', $this->roomPrefix);

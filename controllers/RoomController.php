@@ -165,11 +165,43 @@ class RoomController extends Controller
 
     private function isModeratorForCurrentContext(): bool
     {
-        // Simple default: logged-in users can be moderators; adjust for space roles as needed
+        // Guest users are never moderators
         if (Yii::$app->user->isGuest) {
             return false;
         }
-        // Extend here: map HumHub space owners/admins to moderators
-        return true;
+        
+        $user = Yii::$app->user->getIdentity();
+        
+        // Global admins are always moderators
+        if ($user->isSystemAdmin()) {
+            return true;
+        }
+        
+        // Check if user has EnableRecording permission (critical security check)
+        if (!Yii::$app->user->can(\humhubContrib\modules\jitsiMeetCloud8x8\permissions\EnableRecording::class)) {
+            return false;
+        }
+        
+        // For space context: check if user is space admin/owner
+        if ($this->contentContainer instanceof \humhub\modules\space\models\Space) {
+            $membership = $this->contentContainer->getMembership($user);
+            if ($membership && ($membership->isAdmin() || $membership->isOwner())) {
+                return true;
+            }
+        }
+        
+        // For user context: check if user is viewing their own profile
+        if ($this->contentContainer instanceof \humhub\modules\user\models\User) {
+            if ($this->contentContainer->id === $user->id) {
+                return true;
+            }
+        }
+        
+        // Global context: only global admins can be moderators
+        if ($this->contentContainer === null) {
+            return $user->isSystemAdmin();
+        }
+        
+        return false;
     }
 }

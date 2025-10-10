@@ -74,6 +74,17 @@ $this->registerJs($script);
         <?= $form->field($model, 'jaasEnableLivestreaming')->checkbox(); ?>
         <?= $form->field($model, 'jaasEnableModeration')->checkbox(); ?>
 
+        <hr>
+        <h4><?= Yii::t('JitsiMeetCloud8x8Module.base', 'Permission Defaults') ?></h4>
+        <div class="alert alert-warning">
+            <strong><?= Yii::t('JitsiMeetCloud8x8Module.base', 'Security Notice:') ?></strong>
+            <?= Yii::t('JitsiMeetCloud8x8Module.base', 'Recording and livestreaming permissions are restricted to administrators only by default. These settings control the default state for users who have the appropriate permissions.') ?>
+        </div>
+        
+        <?= $form->field($model, 'defaultRecordingEnabled')->checkbox(); ?>
+        <?= $form->field($model, 'defaultLivestreamingEnabled')->checkbox(); ?>
+        <?= $form->field($model, 'defaultModerationEnabled')->checkbox(); ?>
+
         <?= Button::save()->submit() ?>
         <?php ActiveForm::end(); ?>
     </div>

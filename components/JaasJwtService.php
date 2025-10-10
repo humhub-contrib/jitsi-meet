@@ -56,9 +56,10 @@ class JaasJwtService
         $fullRoom = $roomName;
 
         // CRITICAL FIX: Use boolean values instead of strings for features
+        // Check user permissions for each feature
         $features = [
-            'recording' => (bool)$settings->jaasEnableRecording,
-            'livestreaming' => (bool)$settings->jaasEnableLivestreaming,
+            'recording' => (bool)$settings->jaasEnableRecording && Yii::$app->user->can(\humhubContrib\modules\jitsiMeetCloud8x8\permissions\EnableRecording::class),
+            'livestreaming' => (bool)$settings->jaasEnableLivestreaming && Yii::$app->user->can(\humhubContrib\modules\jitsiMeetCloud8x8\permissions\EnableLivestreaming::class),
             'moderation' => (bool)$settings->jaasEnableModeration,
         ];
 
