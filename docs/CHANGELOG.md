@@ -1,6 +1,10 @@
 Changelog
 =========
 
+1.2.1 (Unreleased)
+-----------------------
+- Enh: Replace default meet.jit.si server domain (which has issues for the microphone and camera with the mobile app), with a list of popular ones
+
 1.2.0 (August 27, 2025)
 -----------------------
 - Fix #40: Update module resources path
