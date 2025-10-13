@@ -2,14 +2,14 @@
 
 The only thing you need to do is to specify a Jitsi Server in the module configuration.
 
-If you do not have your own Jitsi server, the official jitsi server "meet.jit.si" is automatically used.
+If you do not have your own Jitsi server, a list of some tested public servers is provided in the configuration.
 
 ## CSP (Security Hardening)
 
 In case you've overwritten the default [content security settings](https://docs.humhub.org/docs/admin/security#web-security-configuration), you should make sure following resources are allowed:
 
-- Requires **https://meet.jit.si/external_api.js** in `script-src`
-- Requires **https://meet.jit.si** in `frame-src`
+- Requires **https://your-jitsi-server.tld/external_api.js** in `script-src`
+- Requires **https://your-jitsi-server.tld** in `frame-src`
 
 Example  common.php snippet:
 
@@ -19,14 +19,14 @@ Example  common.php snippet:
   "self" => true,
   "allow" => [  
     "https://www.youtube.com",
-    "https://meet.jit.si",
+    "https://your-jitsi-server.tld",
   ]                        
 ],
 "script-src" => [
   "self" => true,
   "unsafe-inline" => true,
   "allow" => [
-    'https://meet.jit.si/external_api.js'
+    'https://your-jitsi-server.tld/external_api.js'
   ],
 //...
 ```
