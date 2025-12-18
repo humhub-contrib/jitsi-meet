@@ -177,9 +177,9 @@ class RoomController extends Controller
             return true;
         }
         
-        // Check if user has EnableRecording permission (critical security check)
-        if (!Yii::$app->user->can(\humhubContrib\modules\jitsiMeetCloud8x8\permissions\EnableRecording::class)) {
-            return false;
+        // If user explicitly has the permission, treat as moderator without further context checks
+        if (Yii::$app->user->can(\humhubContrib\modules\jitsiMeetCloud8x8\permissions\EnableRecording::class)) {
+            return true;
         }
         
         // For space context: check if user is space admin/owner
