@@ -1,11 +1,12 @@
 <?php
 
-use humhub\widgets\Button;
-use yii\bootstrap\ActiveForm;
+use humhub\widgets\bootstrap\Button;
+use humhub\widgets\form\ActiveForm;
 use yii\helpers\Html;
 use yii\helpers\Url;
+use humhubContrib\modules\jitsiMeetCloud8x8\models\SettingsForm;
 
-/* @var $model \humhubContrib\modules\jitsiMeetCloud8x8\models\SettingsForm */
+/* @var $model SettingsForm */
 
 $script = <<< JS
 $(document).ready(function () {
@@ -39,14 +40,39 @@ $(document).ready(function () {
         }
     }
 
+    function toggleJitsiDomainTextInput() {
+        var dropdown = $('#settingsform-jitsidomain');
+        var textInput = $('.field-settingsform-jitsidomain-text');
+        textInput.children('.form-label').detach();
+
+        if (dropdown.val() === '') {
+            textInput.removeClass('d-none');
+        } else {
+            textInput.addClass('d-none');
+        }
+    }
+
+    function disabledJitsiDomainField() {
+        var dropdown = $('#settingsform-jitsidomain');
+        var textInputField = $('#settingsform-jitsidomain-text');
+
+        if (dropdown.val() === '') {
+            dropdown.prop('disabled', true);
+        } else {
+            textInputField.prop('disabled', true);
+        }
+    }
+
     displayJwtParams();
     displayJaas();
-    $(document.body).on('change', '#settingsform-enablejwt', function(){ displayJwtParams(); });
+    toggleJitsiDomainTextInput();
+    $(document.body).on('change', '#settingsform-enablejwt', displayJwtParams);
     $(document.body).on('change', '#settingsform-mode', function(){ displayJaas(); });
+    $(document.body).on('change', '#settingsform-jitsidomain', toggleJitsiDomainTextInput);
+    $('#configure-form').on('submit', disabledJitsiDomainField);
 });
 JS;
 $this->registerJs($script);
-
 ?>
 
 <div class="panel panel-default">
@@ -54,11 +80,12 @@ $this->registerJs($script);
     <div class="panel-heading"><?= Yii::t('JitsiMeetCloud8x8Module.base', '<strong>Jitsi</strong> module configuration'); ?></div>
 
     <div class="panel-body">
-        <?php $form = ActiveForm::begin(['id' => 'configure-form']); ?>
+        <?php $form = ActiveForm::begin(['id' => 'configure-form']) ?>
 
         <?= $form->field($model, 'mode')->dropDownList(['self_hosted' => 'Self-Hosted Jitsi', 'jaas' => '8x8 JaaS (Cloud)']); ?>
 
-        <?= $form->field($model, 'jitsiDomain'); ?>
+        <?= $form->field($model, 'jitsiDomain')->dropDownList(SettingsForm::defaultJitsiDomainOptions(), ['prompt' => Yii::t('JitsiMeetCloud8x8Module.base', 'Custom domain')])->hint('') ?>
+        <?= $form->field($model, 'jitsiDomain')->textInput(['id' => 'settingsform-jitsidomain-text'])->label('') ?>
         <?= $form->field($model, 'roomPrefix'); ?>
         <?= $form->field($model, 'menuTitle'); ?>
 
@@ -86,7 +113,7 @@ $this->registerJs($script);
         <?= $form->field($model, 'defaultModerationEnabled')->checkbox(); ?>
 
         <?= Button::save()->submit() ?>
-        <?php ActiveForm::end(); ?>
+        <?php ActiveForm::end() ?>
     </div>
 </div>
 

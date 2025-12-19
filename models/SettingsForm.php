@@ -7,6 +7,11 @@ use yii\base\Model;
 
 class SettingsForm extends Model
 {
+    public const DEFAULT_JITSI_DOMAINS = [
+        'meet.ffmuc.net',
+        'kmeet.infomaniak.com',
+        'jitsi.hamburg.ccc.de',
+    ];
 
     public $jitsiDomain;
     public $menuTitle;
@@ -124,7 +129,7 @@ class SettingsForm extends Model
     public function attributeHints()
     {
         return [
-            'jitsiDomain' => Yii::t('JitsiMeetCloud8x8Module.base', 'Default is meet.jit.si without "https://" prefix.'),
+            'jitsiDomain' => Yii::t('JitsiMeetCloud8x8Module.base', 'Without "https://" prefix.'),
             'jitsiAppID' => Yii::t('JitsiMeetCloud8x8Module.base', 'Application ID shared with a private Jitsi server used to generate JWT token for authentication. Default: empty, no JWT token authentication will be used.'),
             'jitsiAppSecret' => Yii::t('JitsiMeetCloud8x8Module.base', 'Application secret shared with a private Jitsi server used to sign JWT token for authentication. Default: empty, needed if JWT token should be generated.'),
             'menuTitle' => Yii::t('JitsiMeetCloud8x8Module.base', 'Default: Jitsi Meet'),
@@ -157,7 +162,7 @@ class SettingsForm extends Model
 
         $this->jitsiDomain = Yii::$app->getModule('jitsi-meet-cloud-8x8')->settings->get('jitsiDomain');
         if (empty($this->jitsiDomain)) {
-            $this->jitsiDomain = 'meet.jit.si';
+            $this->jitsiDomain = static::DEFAULT_JITSI_DOMAINS[0];
         }
 
         $this->jitsiAppID = Yii::$app->getModule('jitsi-meet-cloud-8x8')->settings->get('jitsiAppID');
@@ -245,5 +250,10 @@ class SettingsForm extends Model
         Yii::$app->getModule('jitsi-meet-cloud-8x8')->settings->set('roomPrefix', $this->roomPrefix);
 
         return true;
+    }
+
+    public static function defaultJitsiDomainOptions()
+    {
+        return array_combine(self::DEFAULT_JITSI_DOMAINS, self::DEFAULT_JITSI_DOMAINS);
     }
 }

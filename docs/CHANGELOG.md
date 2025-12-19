@@ -1,6 +1,15 @@
 Changelog
 =========
 
+1.2.1 (October 13, 2025)
+------------------------
+- Enh #45: Replace default meet.jit.si server domain (which has issues for the microphone and camera with the mobile app), with a list of popular ones
+
+1.2.0 (August 27, 2025)
+-----------------------
+- Fix #40: Update module resources path
+- Enh #41: Use PHP CS Fixer
+- Enh #43: Migration to Bootstrap 5 for HumHub 1.18
 1.1.9 (April 16, 2024)
 ----------------------
 - Fix #38: Fix missing room prefix in JWT token
