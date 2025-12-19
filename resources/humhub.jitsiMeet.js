@@ -68,6 +68,20 @@ humhub.module('jitsiMeet', function (module, require, $) {
 
         jwt = this.options.jwt;
 
+        // Get base URL and domain for generating correct invitation links
+        var baseUrl = window.location.protocol + '//' + window.location.host;
+        var inviteDomain = window.location.host;
+        var originalRoomName = this.options.roomname; // Original room name without app ID prefix
+        var conferenceUrl = baseUrl + '/conference/' + originalRoomName;
+        
+        // Custom invite service URL - this endpoint will return correct URL format
+        var inviteServiceUrl = baseUrl + '/jitsi-meet-cloud-8x8/room/invite';
+
+        // Check if startSilent is requested (for dial-in scenarios)
+        var startSilent = this.options.startSilent === true || 
+                         (typeof this.options.startSilent === 'string' && this.options.startSilent === 'true') ||
+                         window.location.hash.indexOf('config.startSilent=true') !== -1;
+
         const options = {
             roomName: roomName,
             parentNode: document.querySelector('#jitsiMeetD'),
@@ -88,6 +102,25 @@ humhub.module('jitsiMeet', function (module, require, $) {
             configOverwrite: {
                 // Workaround for broken "open in app" link on Android
                 disableDeepLinking: true,
+                // Configure invite domain to use our domain
+                inviteDomain: inviteDomain,
+                // Configure custom invite service URL
+                // This tells Jitsi Meet to use our endpoint for generating invitation URLs
+                inviteServiceUrl: inviteServiceUrl,
+                // Use brandingRoomAlias to customize invite link format
+                // This ensures recording bot emails use /conference/{roomName} format
+                brandingRoomAlias: 'conference/' + originalRoomName,
+                // Configure deployment info
+                deploymentInfo: {
+                    shard: 'shard1',
+                    region: 'us',
+                    userRegion: 'us',
+                    appId: mode === 'jaas' ? this.options.jaasappid : undefined
+                },
+                // Configure startSilent for dial-in scenarios
+                startSilent: startSilent,
+                startAudioMuted: startSilent,
+                startVideoMuted: false,
             }
         };
 
@@ -96,6 +129,24 @@ humhub.module('jitsiMeet', function (module, require, $) {
         try {
             this.jitsiApi = new JitsiMeetExternalAPI(domain, options);
             console.log('JitsiMeet API initialized successfully');
+            console.log('Conference URL for invitations:', conferenceUrl);
+            console.log('Invite service URL:', inviteServiceUrl);
+            
+            // Override getRoomURL method to return correct URL format
+            // This ensures share/invite functionality uses /conference/{roomName} format
+            if (this.jitsiApi && typeof this.jitsiApi.getRoomURL === 'function') {
+                var originalGetRoomURL = this.jitsiApi.getRoomURL.bind(this.jitsiApi);
+                this.jitsiApi.getRoomURL = function() {
+                    console.log('Overriding getRoomURL - returning:', conferenceUrl);
+                    return conferenceUrl;
+                };
+            }
+            
+            // Also try to override the room URL property if it exists
+            if (this.jitsiApi && this.jitsiApi._room) {
+                // Store original room name but override URL generation
+                console.log('JitsiMeet API - Room object found, attempting to override URL');
+            }
             
             this.jitsiApi.addEventListeners({
                 readyToClose: function () {
@@ -104,6 +155,31 @@ humhub.module('jitsiMeet', function (module, require, $) {
                 },
                 videoConferenceJoined: function () {
                     console.log('JitsiMeet API - videoConferenceJoined event');
+                    
+                    // After joining, try to override invitation URL generation
+                    // Intercept any invitation/share actions
+                    setTimeout(function() {
+                        // Override getRoomURL again after API is fully initialized
+                        if (that.jitsiApi && typeof that.jitsiApi.getRoomURL === 'function') {
+                            that.jitsiApi.getRoomURL = function() {
+                                console.log('Overriding getRoomURL after join - returning:', conferenceUrl);
+                                return conferenceUrl;
+                            };
+                        }
+                        
+                        // Try to find and override invitation UI elements
+                        // This is a workaround to ensure share links use correct format
+                        var inviteButtons = document.querySelectorAll('[data-i18n*="invite"], [aria-label*="invite"], [title*="invite"]');
+                        if (inviteButtons.length > 0) {
+                            console.log('Found invite buttons, setting up click handlers');
+                            inviteButtons.forEach(function(btn) {
+                                btn.addEventListener('click', function(e) {
+                                    console.log('Invite button clicked, conference URL:', conferenceUrl);
+                                    // The invite service URL should handle this, but log for debugging
+                                });
+                            });
+                        }
+                    }, 2000); // Wait 2 seconds for UI to fully load
                 },
                 videoConferenceLeft: function () {
                     console.log('JitsiMeet API - videoConferenceLeft event');

@@ -22,6 +22,8 @@ class RoomWidget extends JsWidget
 
     public $jwt = '';
 
+    public $startSilent = false;
+
     /**
      * @inheritdoc
      */
@@ -65,7 +67,8 @@ class RoomWidget extends JsWidget
             'mode' => $module->getSettingsForm()->mode,
             'jaasAppId' => $module->getSettingsForm()->jaasAppId,
             'usermail' => $email,
-            'userdisplayname' => $name
+            'userdisplayname' => $name,
+            'startSilent' => $this->startSilent
         ];
 
         // Enhanced logging for debugging
