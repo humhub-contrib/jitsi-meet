@@ -42,6 +42,7 @@ class Module extends \humhub\components\Module
             new \humhubContrib\modules\jitsiMeetCloud8x8\permissions\CanAccess(),
             new \humhubContrib\modules\jitsiMeetCloud8x8\permissions\CreateVideoChat(),
             new \humhubContrib\modules\jitsiMeetCloud8x8\permissions\JoinVideoChat(),
+            new \humhubContrib\modules\jitsiMeetCloud8x8\permissions\CanBeModerator(),
             new \humhubContrib\modules\jitsiMeetCloud8x8\permissions\EnableRecording(),
             new \humhubContrib\modules\jitsiMeetCloud8x8\permissions\EnableLivestreaming(),
             new \humhubContrib\modules\jitsiMeetCloud8x8\permissions\ManageRecordings(),

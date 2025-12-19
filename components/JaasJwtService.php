@@ -55,20 +55,32 @@ class JaasJwtService
         // The appId prefix is handled by the domain/URL structure
         $fullRoom = $roomName;
 
-        // CRITICAL FIX: Use boolean values instead of strings for features
-        // Check user permissions for each feature
+        /**
+         * Feature flags:
+         * - recording / livestreaming: per-user, based on HumHub permissions.
+         * - moderation: MUST be aligned with our moderator logic
+         *   (admins + chat starter only). We therefore AND the global
+         *   setting with the per-user $isModerator flag.
+         */
         $features = [
-            'recording' => (bool)$settings->jaasEnableRecording && Yii::$app->user->can(\humhubContrib\modules\jitsiMeetCloud8x8\permissions\EnableRecording::class),
-            'livestreaming' => (bool)$settings->jaasEnableLivestreaming && Yii::$app->user->can(\humhubContrib\modules\jitsiMeetCloud8x8\permissions\EnableLivestreaming::class),
-            'moderation' => (bool)$settings->jaasEnableModeration,
+            'recording' => (bool)$settings->jaasEnableRecording
+                && Yii::$app->user->can(\humhubContrib\modules\jitsiMeetCloud8x8\permissions\EnableRecording::class),
+            'livestreaming' => (bool)$settings->jaasEnableLivestreaming
+                && Yii::$app->user->can(\humhubContrib\modules\jitsiMeetCloud8x8\permissions\EnableLivestreaming::class),
+            'moderation' => (bool)$settings->jaasEnableModeration && (bool)$isModerator,
         ];
 
+        //FIX FOR NTP DRIFT
+        $now = time();
+        $leeway = 60; // 1 minute buffer
+        
         $payload = [
             'aud' => 'jitsi',
             'iss' => 'chat',
+            'iat' => $now - $leeway, // Set issued time 1 min ago
+            'nbf' => $now - $leeway, // Set start time 1 min ago
             'sub' => $appId,
             'room' => $fullRoom,
-            'nbf' => $notBefore,
             'exp' => $expire,
             'context' => [
                 'user' => [
