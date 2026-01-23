@@ -119,7 +119,7 @@ class RoomController extends Controller
             $name = Yii::$app->user->getIdentity()->profile->firstname;
             $name .= " Square";
         }
-        $name = ucwords($name);
+        $name = ucwords((string) $name);
         $name = preg_replace("/[^A-Za-z0-9]/", '', $name);
 
         return $name;

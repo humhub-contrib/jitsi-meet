@@ -30,9 +30,7 @@ class SettingsForm extends Model
             ['jitsiDomain', 'string'],
             [['menuTitle', 'jitsiAppID', 'jitsiAppSecret', 'roomPrefix'], 'string'],
             ['enableJwt', 'boolean'],
-            [['jitsiAppID', 'jitsiAppSecret'], 'required', 'when' => function ($model) {
-                return $model->enableJwt;
-            }, 'whenClient' => "function (attribute, value) {
+            [['jitsiAppID', 'jitsiAppSecret'], 'required', 'when' => fn($model) => $model->enableJwt, 'whenClient' => "function (attribute, value) {
                 return $('#settingsform-enablejwt').is(':checked');
             }"],
         ];
@@ -97,7 +95,7 @@ class SettingsForm extends Model
         Yii::$app->getModule('jitsi-meet')->settings->set('jitsiAppSecret', $this->jitsiAppSecret);
         Yii::$app->getModule('jitsi-meet')->settings->set('enableJwt', $this->enableJwt);
 
-        $this->roomPrefix = ucwords(preg_replace("/[^A-Za-z0-9]/", '', $this->roomPrefix));
+        $this->roomPrefix = ucwords((string) preg_replace("/[^A-Za-z0-9]/", '', (string) $this->roomPrefix));
         Yii::$app->getModule('jitsi-meet')->settings->set('roomPrefix', $this->roomPrefix);
 
         return true;
