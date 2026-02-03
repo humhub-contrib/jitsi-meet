@@ -7,7 +7,7 @@ return [
     'Can access Jitsi Meet' => '',
     'Can access Jitsi Meet from main navigation.' => '',
     'Close' => '',
-    'Default is meet.jit.si without "https://" prefix.' => '',
+    'Custom domain' => '',
     'Default: Jitsi Meet' => '',
     'Default: empty, useful for public Jitsi server' => '',
     'Enable JWT Authentication' => '',
@@ -15,4 +15,5 @@ return [
     'Name' => '',
     'Open conference room' => '',
     'Open in new window?' => '',
+    'Without "https://" prefix.' => '',
 ];
