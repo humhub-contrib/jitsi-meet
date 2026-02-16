@@ -1,5 +1,6 @@
 <?php
 
+use humhub\helpers\DeviceDetectorHelper;
 use humhub\helpers\Html;
 use humhub\widgets\bootstrap\Button;
 use humhub\widgets\form\ActiveForm;
@@ -17,8 +18,11 @@ use humhub\widgets\form\ActiveForm;
                 <div class="panel-body">
                     <?php $form = ActiveForm::begin(['layout' => 'horizontal', 'id' => 'jrform']); ?>
 
-                    <?= $form->field($model, 'room'); ?>
-                    <?= $form->field($model, 'newWindow')->checkbox(); ?>
+                    <?= $form->field($model, 'room') ?>
+
+                    <?php if (!DeviceDetectorHelper::isAppRequest()) : ?>
+                        <?= $form->field($model, 'newWindow')->checkbox() ?>
+                    <?php endif; ?>
 
                     <?= Button::save(Yii::t('JitsiMeetModule.base', 'Join'))->loader(false)->submit() ?>
 
