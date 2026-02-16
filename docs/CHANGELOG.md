@@ -1,6 +1,10 @@
 Changelog
 =========
 
+1.2.2 (Unreleased)
+------------------------
+- Fix #49: "Open in new window?" not working on mobile app
+
 1.2.1 (October 13, 2025)
 ------------------------
 - Enh #45: Replace default meet.jit.si server domain (which has issues for the microphone and camera with the mobile app), with a list of popular ones
