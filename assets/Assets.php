@@ -2,16 +2,16 @@
 
 namespace humhubContrib\modules\jitsiMeet\assets;
 
+use humhub\components\assets\AssetBundle;
 use humhubContrib\modules\jitsiMeet\Module;
 use Yii;
-use yii\web\AssetBundle;
 use yii\web\View;
 
 class Assets extends AssetBundle
 {
-    public $publishOptions = [
-        'forceCopy' => true,
-    ];
+    public $sourcePath = '@jitsi-meet/resources';
+
+    public $forceCopy = false;
 
     public $jsOptions = [
         'position' => View::POS_BEGIN,
@@ -20,7 +20,6 @@ class Assets extends AssetBundle
     public function init()
     {
         $this->initJitsiApiJs();
-        $this->sourcePath = __DIR__ . '/../resources';
         parent::init();
     }
 
