@@ -4,6 +4,7 @@ Changelog
 1.2.2 (Unreleased)
 ------------------------
 - Fix #49: "Open in new window?" not working on mobile app
+- Fix #54: Remove deprecations
 
 1.2.1 (October 13, 2025)
 ------------------------

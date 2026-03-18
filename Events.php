@@ -2,6 +2,7 @@
 
 namespace humhubContrib\modules\jitsiMeet;
 
+use humhub\helpers\ControllerHelper;
 use humhub\modules\ui\menu\MenuLink;
 use humhub\widgets\TopMenu;
 use humhubContrib\modules\jitsiMeet\permissions\CanAccess;
@@ -25,7 +26,7 @@ class Events
             'label' => Yii::t('JitsiMeetModule.base', $module->getSettingsForm()->menuTitle),
             'url' => ['/jitsi-meet/room'],
             'icon' => 'video-camera',
-            'isActive' => MenuLink::isActiveState('jitsi-meet', 'room'),
+            'isActive' => ControllerHelper::isActivePath('jitsi-meet', 'room'),
             'sortOrder' => 400,
         ]));
     }
