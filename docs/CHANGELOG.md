@@ -1,8 +1,8 @@
 Changelog
 =========
 
-1.2.2 (Unreleased)
-------------------------
+1.2.2 (July 8, 2026)
+--------------------
 - Fix #49: "Open in new window?" not working on mobile app
 - Fix #54: Remove deprecations
 
