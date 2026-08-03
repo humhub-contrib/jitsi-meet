@@ -3,7 +3,7 @@ Changelog
 
 1.2.3 (Unreleased)
 --------------------
-- Fix: Remove `meet.ffmuc.net` server ([not embeddable anymore](https://ffmuc.net/freifunk/infrastruktur/community/2026/03/19/iframe-embedding-einschraenkungen/#en))
+- Fix #55: Remove `meet.ffmuc.net` server ([not embeddable anymore](https://ffmuc.net/freifunk/infrastruktur/community/2026/03/19/iframe-embedding-einschraenkungen/#en))
 
 1.2.2 (July 8, 2026)
 --------------------
