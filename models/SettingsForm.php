@@ -8,7 +8,6 @@ use yii\base\Model;
 class SettingsForm extends Model
 {
     public const DEFAULT_JITSI_DOMAINS = [
-        'meet.ffmuc.net',
         'kmeet.infomaniak.com',
         'jitsi.hamburg.ccc.de',
     ];

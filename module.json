@@ -7,7 +7,7 @@
     "conference",
     "jitsi"
   ],
-  "version": "1.2.2",
+  "version": "1.2.3",
   "humhub": {
     "minVersion": "1.18"
   },
