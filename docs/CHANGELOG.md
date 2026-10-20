@@ -1,8 +1,8 @@
 Changelog
 =========
 
-1.2.4 (Unreleased)
-------------------
+1.2.4 (October 20, 2026)
+------------------------
 - Enh: Rename room field label to "Name of conference room"
 
 1.2.3 (August 4, 2026)
