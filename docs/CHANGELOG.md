@@ -1,6 +1,10 @@
 Changelog
 =========
 
+1.2.4 (Unreleased)
+------------------
+- Enh: Rename room field label to "Name of conference room"
+
 1.2.3 (August 4, 2026)
 ----------------------
 - Fix #55: Remove `meet.ffmuc.net` server ([not embeddable anymore](https://ffmuc.net/freifunk/infrastruktur/community/2026/03/19/iframe-embedding-einschraenkungen/#en))

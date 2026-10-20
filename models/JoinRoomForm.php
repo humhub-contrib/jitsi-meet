@@ -21,7 +21,7 @@ class JoinRoomForm extends \yii\base\Model
     public function attributeLabels()
     {
         return [
-            'room' => Yii::t('JitsiMeetModule.base', 'Name'),
+            'room' => Yii::t('JitsiMeetModule.base', 'Name of conference room'),
             'newWindow' => Yii::t('JitsiMeetModule.base', 'Open in new window?'),
         ];
     }
