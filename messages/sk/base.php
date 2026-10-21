@@ -11,9 +11,9 @@ return [
     'Default: empty, useful for public Jitsi server' => 'Predvolené: prázdne, užitočné pre verejný server Jitsi',
     'Enable JWT Authentication' => 'Povoliť overenie JWT',
     'Join' => 'Pripojiť sa',
-    'Name' => 'Meno',
     'Open conference room' => 'Otvorená konferenčná miestnosť',
     'Open in new window?' => 'Otvoriť v novom okne?',
     'Custom domain' => '',
+    'Name of conference room' => '',
     'Without "https://" prefix.' => '',
 ];

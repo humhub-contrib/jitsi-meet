@@ -11,9 +11,9 @@ return [
     'Default: empty, useful for public Jitsi server' => 'デフォルト：空、パブリック Jitsiサーバーに便利',
     'Enable JWT Authentication' => 'JWT認証を有効にする',
     'Join' => '参加',
-    'Name' => '名前',
     'Open conference room' => '会議を開く',
     'Open in new window?' => '新しいウィンドウで開きますか？',
     'Custom domain' => '',
+    'Name of conference room' => '',
     'Without "https://" prefix.' => '',
 ];

@@ -9,11 +9,11 @@ return [
     'Default: empty, useful for public Jitsi server' => 'По подразбиране: празно (полезна опция при направа на публичен Jitsi сървър)',
     'Enable JWT Authentication' => 'Активирай JWT удостоверяване',
     'Join' => 'Присъедини се',
-    'Name' => 'Име',
     'Open conference room' => 'Отвори конферентна стая',
     'Open in new window?' => 'Отвори в нов прозорец?',
     'Can access Jitsi Meet' => '',
     'Can access Jitsi Meet from main navigation.' => '',
     'Custom domain' => '',
+    'Name of conference room' => '',
     'Without "https://" prefix.' => '',
 ];

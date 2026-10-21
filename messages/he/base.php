@@ -12,7 +12,7 @@ return [
     'Default: empty, useful for public Jitsi server' => '',
     'Enable JWT Authentication' => '',
     'Join' => '',
-    'Name' => '',
+    'Name of conference room' => '',
     'Open conference room' => '',
     'Open in new window?' => '',
     'Without "https://" prefix.' => '',

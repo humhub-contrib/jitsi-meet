@@ -11,9 +11,9 @@ return [
     'Default: empty, useful for public Jitsi server' => 'Alapértelmezett: üres, hasznos a nyilvános Jitsi szerver számára',
     'Enable JWT Authentication' => 'Engedélyezze a JWT hitelesítést',
     'Join' => 'Csatlakozás',
-    'Name' => 'Név',
     'Open conference room' => 'Nyitott konferenciaterem',
     'Open in new window?' => 'Megnyitás új ablakban?',
     'Custom domain' => '',
+    'Name of conference room' => '',
     'Without "https://" prefix.' => '',
 ];

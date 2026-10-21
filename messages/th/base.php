@@ -9,11 +9,11 @@ return [
     'Default: empty, useful for public Jitsi server' => 'ค่าเริ่มต้น: ว่างเปล่า มีประโยชน์สำหรับเซิร์ฟเวอร์ Jitsi สาธารณะ',
     'Enable JWT Authentication' => 'เปิดใช้งานการตรวจสอบ JWT',
     'Join' => 'เข้าร่วม',
-    'Name' => 'ชื่อ',
     'Open conference room' => 'เปิดห้องประชุม',
     'Open in new window?' => 'เปิดหน้าต่างใหม่?',
     'Can access Jitsi Meet' => '',
     'Can access Jitsi Meet from main navigation.' => '',
     'Custom domain' => '',
+    'Name of conference room' => '',
     'Without "https://" prefix.' => '',
 ];

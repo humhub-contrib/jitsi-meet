@@ -3,7 +3,6 @@
 return [
     'Close' => 'Закрыть',
     'Join' => 'Присоединиться',
-    'Name' => 'Имя',
     'Open in new window?' => 'Открыть в новом окне?',
     '<strong>Jitsi</strong> module configuration' => '',
     'Application ID shared with a private Jitsi server used to generate JWT token for authentication. Default: empty, no JWT token authentication will be used.' => '',
@@ -14,6 +13,7 @@ return [
     'Default: Jitsi Meet' => '',
     'Default: empty, useful for public Jitsi server' => '',
     'Enable JWT Authentication' => '',
+    'Name of conference room' => '',
     'Open conference room' => '',
     'Without "https://" prefix.' => '',
 ];

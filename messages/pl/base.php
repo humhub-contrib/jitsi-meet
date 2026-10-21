@@ -11,9 +11,9 @@ return [
     'Default: empty, useful for public Jitsi server' => 'Domyślnie: puste, przydatne dla publicznych serwerów jitsi',
     'Enable JWT Authentication' => 'Włącz uwierzytelnianie JWT',
     'Join' => 'Dołącz',
-    'Name' => 'Nazwa',
     'Open conference room' => 'Otwórz pokój konferencji',
     'Open in new window?' => 'Otworzyć w nowym oknie?',
     'Custom domain' => '',
+    'Name of conference room' => '',
     'Without "https://" prefix.' => '',
 ];
