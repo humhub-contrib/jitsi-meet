@@ -9,7 +9,6 @@
 namespace humhubContrib\modules\jitsiMeet\permissions;
 
 use humhub\libs\BasePermission;
-use humhub\modules\user\models\Group;
 use Yii;
 
 class CanAccess extends BasePermission

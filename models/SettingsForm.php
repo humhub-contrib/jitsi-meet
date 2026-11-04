@@ -26,7 +26,9 @@ class SettingsForm extends Model
     public function rules()
     {
         return [
+            ['jitsiDomain', 'trim'],
             ['jitsiDomain', 'string'],
+            ['jitsiDomain', 'match', 'pattern' => '/^[A-Za-z0-9]([A-Za-z0-9.-]*[A-Za-z0-9])?(:\d{1,5})?$/', 'message' => Yii::t('JitsiMeetModule.base', 'Please enter a valid domain name without "https://" prefix.')],
             [['menuTitle', 'jitsiAppID', 'jitsiAppSecret', 'roomPrefix'], 'string'],
             ['enableJwt', 'boolean'],
             [['jitsiAppID', 'jitsiAppSecret'], 'required', 'when' => fn($model) => $model->enableJwt, 'whenClient' => "function (attribute, value) {
@@ -52,50 +54,53 @@ class SettingsForm extends Model
      */
     public function init()
     {
+        $settings = Yii::$app->getModule('jitsi-meet')->settings;
 
-        $this->menuTitle = Yii::$app->getModule('jitsi-meet')->settings->get('menuTitle');
+        $this->menuTitle = $settings->get('menuTitle');
         if (empty($this->menuTitle)) {
             $this->menuTitle = 'Jitsi Meet';
         }
 
-        $this->jitsiDomain = Yii::$app->getModule('jitsi-meet')->settings->get('jitsiDomain');
+        $this->jitsiDomain = $settings->get('jitsiDomain');
         if (empty($this->jitsiDomain)) {
             $this->jitsiDomain = static::DEFAULT_JITSI_DOMAINS[0];
         }
 
-        $this->jitsiAppID = Yii::$app->getModule('jitsi-meet')->settings->get('jitsiAppID');
+        $this->jitsiAppID = $settings->get('jitsiAppID');
         if (empty($this->jitsiAppID)) {
             $this->jitsiAppID = '';
         }
-        $this->jitsiAppSecret = Yii::$app->getModule('jitsi-meet')->settings->get('jitsiAppSecret');
+        $this->jitsiAppSecret = $settings->get('jitsiAppSecret');
         if (empty($this->jitsiAppSecret)) {
             $this->jitsiAppSecret = '';
         }
 
-        $this->roomPrefix = Yii::$app->getModule('jitsi-meet')->settings->get('roomPrefix');
+        $this->roomPrefix = $settings->get('roomPrefix');
         if (empty($this->roomPrefix)) {
             $this->roomPrefix = '';
         }
 
-        $this->enableJwt = Yii::$app->getModule('jitsi-meet')->settings->get('enableJwt');
+        $this->enableJwt = $settings->get('enableJwt');
         if (empty($this->enableJwt)) {
             $this->enableJwt = 0;
         }
     }
 
-    /**
-     * @inheritdoc
-     */
-    public function save()
+    public function save(): bool
     {
-        Yii::$app->getModule('jitsi-meet')->settings->set('menuTitle', $this->menuTitle);
-        Yii::$app->getModule('jitsi-meet')->settings->set('jitsiDomain', $this->jitsiDomain);
-        Yii::$app->getModule('jitsi-meet')->settings->set('jitsiAppID', $this->jitsiAppID);
-        Yii::$app->getModule('jitsi-meet')->settings->set('jitsiAppSecret', $this->jitsiAppSecret);
-        Yii::$app->getModule('jitsi-meet')->settings->set('enableJwt', $this->enableJwt);
+        if (!$this->validate()) {
+            return false;
+        }
+
+        $settings = Yii::$app->getModule('jitsi-meet')->settings;
+        $settings->set('menuTitle', $this->menuTitle);
+        $settings->set('jitsiDomain', $this->jitsiDomain);
+        $settings->set('jitsiAppID', $this->jitsiAppID);
+        $settings->set('jitsiAppSecret', $this->jitsiAppSecret);
+        $settings->set('enableJwt', $this->enableJwt);
 
         $this->roomPrefix = ucwords((string) preg_replace("/[^A-Za-z0-9]/", '', (string) $this->roomPrefix));
-        Yii::$app->getModule('jitsi-meet')->settings->set('roomPrefix', $this->roomPrefix);
+        $settings->set('roomPrefix', $this->roomPrefix);
 
         return true;
     }
