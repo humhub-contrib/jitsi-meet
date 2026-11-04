@@ -28,12 +28,22 @@ humhub.module('jitsiMeet', function (module, require, $) {
     };
 
     Room.prototype.close = function (evt) {
+        if (this.jitsiApi) {
+            try {
+                this.jitsiApi.executeCommand('hangup');
+                this.jitsiApi.dispose();
+            } catch (e) {
+                module.log.error(e);
+            }
+            this.jitsiApi = null;
+        }
+
         this.modal.clear();
         this.modal.close();
-        evt.finish();
 
-        this.jitsiApi.executeCommand('hangup');
-
+        if (evt) {
+            evt.finish();
+        }
     }
 
     Room.prototype.initJitsi = function () {
@@ -45,7 +55,7 @@ humhub.module('jitsiMeet', function (module, require, $) {
             roomName = this.options.roomprefix + this.options.roomname;
         }
 
-        jwt = this.options.jwt;
+        var jwt = this.options.jwt;
 
         const options = {
             roomName: roomName,

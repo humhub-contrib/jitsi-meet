@@ -1,6 +1,10 @@
 Changelog
 =========
 
+1.2.5 (Unreleased)
+------------------
+- Fix #56: Room access permission check, non-Latin room names, JWT settings validation, `promise.done` error caused by the Jitsi API script
+
 1.2.4 (October 20, 2026)
 ------------------------
 - Enh: Rename room field label to "Name of conference room"

@@ -1,5 +1,0 @@
-# TODOS
-
-- Implement JWT support
-
-

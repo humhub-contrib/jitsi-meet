@@ -20,7 +20,7 @@ class RoomController extends Controller
     protected function getAccessRules()
     {
         return [
-            ['permissions' => [CanAccess::class], 'actions' => ['index']],
+            ['permissions' => [CanAccess::class]],
         ];
     }
 
@@ -114,15 +114,27 @@ class RoomController extends Controller
 
     private function fixRoomName($name)
     {
+        $name = $this->sanitizeRoomName($name);
 
-        if (empty($name)) {
-            $name = Yii::$app->user->getIdentity()->profile->firstname;
-            $name .= " Square";
+        if ($name === '') {
+            $user = Yii::$app->user->getIdentity();
+            $name = $this->sanitizeRoomName($user->profile->firstname . ' Square');
+            if ($name === 'Square') {
+                $name = 'User' . $user->id;
+            }
         }
-        $name = ucwords((string) $name);
-        $name = preg_replace("/[^A-Za-z0-9]/", '', $name);
 
         return $name;
+    }
+
+    /**
+     * Capitalizes the first letter of each word and removes all characters except letters and digits (Unicode aware)
+     */
+    private function sanitizeRoomName($name): string
+    {
+        $name = preg_replace_callback('/(^|\s)(\p{Ll})/u', fn($m) => $m[1] . mb_strtoupper($m[2]), (string) $name);
+
+        return (string) preg_replace('/[^\p{L}\p{N}]/u', '', (string) $name);
     }
 
 }

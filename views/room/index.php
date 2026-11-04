@@ -5,7 +5,7 @@ use humhub\helpers\Html;
 use humhub\widgets\bootstrap\Button;
 use humhub\widgets\form\ActiveForm;
 
-/* @var $model \humhubContrib\modules\jitsiMeet\\models\JoinRoomForm */
+/* @var $model \humhubContrib\modules\jitsiMeet\models\JoinRoomForm */
 
 ?>
 <div class="container">
@@ -35,8 +35,10 @@ use humhub\widgets\form\ActiveForm;
 
 <script <?= Html::nonce() ?>>
     $('#jrform').on('beforeSubmit', function(e) {
-        if ($('#joinroomform-newwindow'). prop("checked") == true) {
-            $('#jrform').attr('target','_blank');
+        if ($('#joinroomform-newwindow').prop('checked')) {
+            $('#jrform').attr('target', '_blank');
+        } else {
+            $('#jrform').removeAttr('target');
         }
         return true;
     });
