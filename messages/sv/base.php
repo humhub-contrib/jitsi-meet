@@ -15,5 +15,6 @@ return [
     'Open in new window?' => 'Öppna i nytt fönster?',
     'Custom domain' => '',
     'Name of conference room' => '',
+    'Please enter a valid domain name without "https://" prefix.' => '',
     'Without "https://" prefix.' => '',
 ];

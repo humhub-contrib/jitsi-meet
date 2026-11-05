@@ -15,5 +15,6 @@ return [
     'Enable JWT Authentication' => '',
     'Name of conference room' => '',
     'Open conference room' => '',
+    'Please enter a valid domain name without "https://" prefix.' => '',
     'Without "https://" prefix.' => '',
 ];
